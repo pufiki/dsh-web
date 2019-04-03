@@ -17,7 +17,7 @@ const Routes = () => {
       <Header/>
       <div style={styles.margin}>
         <Switch>
-          <Route exact path={'/'} component={ Home }/>
+          <Route exact path="/" component={ Home }/>
           <Route component={ Error404 }/>
         </Switch>
       </div>
