@@ -1,0 +1,42 @@
+{
+  "name": "pufiki_hackathon",
+  "version": "0.0.1",
+  "description": "Digital superhero hackathon's project from the team Pufiki",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run buildProd && node index.js",
+    "buildProd": "webpack --mode production",
+    "dev": "webpack-dev-server --hot --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanishMax/pufiki_hackathon.git"
+  },
+  "keywords": [
+    "Hackathon",
+    "digital",
+    "superhero",
+    "pufiki",
+    "react",
+    "material",
+    "design"
+  ],
+  "author": "VanishMax",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VanishMax/pufiki_hackathon/issues"
+  },
+  "homepage": "https://github.com/VanishMax/pufiki_hackathon#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "express": "^4.16.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
