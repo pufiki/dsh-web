@@ -29,6 +29,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
+    historyApiFallback: true,
     contentBase: './template',
     publicPath: '/public/',
     port: 3000,

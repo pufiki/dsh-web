@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Header from './Header'
-import App from './App'
+import Header from './parts/Header'
+import Home from './pages/Home'
 import Error404 from './Error404'
 
 const styles = {
@@ -17,7 +17,7 @@ const Routes = () => {
       <Header/>
       <div style={styles.margin}>
         <Switch>
-          <Route exact path={'/'} component={ App }/>
+          <Route exact path="/" component={ Home }/>
           <Route component={ Error404 }/>
         </Switch>
       </div>

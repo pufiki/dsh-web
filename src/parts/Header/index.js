@@ -9,9 +9,9 @@ import Link from '@material-ui/core/Link'
 class Header extends React.Component {
   render() {
     return (
-      <AppBar position='fixed' color='primary'>
+      <AppBar position="fixed" color="primary">
         <Toolbar>
-          <Typography variant="h4" color='inherit'>
+          <Typography variant="h4" color="inherit">
             Пуфики
           </Typography>
           <Link to='/lolka' component={RouterLink} variant='h6' color='inherit'>
