@@ -1,13 +1,13 @@
 import React from 'react'
 
-const App = () => {
+const Error404 = () => {
   return (
     <div>
       <p>
-        looooool
+        This is error
       </p>
     </div>
   )
 };
 
-export default App
+export default Error404
