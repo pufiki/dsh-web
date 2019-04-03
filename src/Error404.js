@@ -1,13 +1,15 @@
 import React from 'react'
 
-const Error404 = () => {
-  return (
-    <div>
-      <p>
-        This is error
-      </p>
-    </div>
-  )
-};
+class Error404 extends React.Component {
+  render() {
+    return (
+      <main className="error-404">
+        <p>
+          This is error
+        </p>
+      </main>
+    )
+  }
+}
 
 export default Error404
