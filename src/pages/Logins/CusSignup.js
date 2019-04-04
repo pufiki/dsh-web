@@ -3,8 +3,8 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Link from "@material-ui/core/Link";
-import {Link as RouterLink} from "react-router-dom";
+import Link from '@material-ui/core/Link'
+import {Link as RouterLink} from 'react-router-dom'
 
 const styles = {
   centerDiv: {
@@ -37,7 +37,7 @@ const styles = {
   }
 };
 
-function CusLogin() {
+function CusSignup() {
 
   const [values, setValues] = React.useState({
     name: '',
@@ -90,4 +90,4 @@ function CusLogin() {
   )
 }
 
-export default CusLogin
+export default CusSignup
