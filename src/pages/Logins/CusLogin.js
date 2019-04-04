@@ -3,16 +3,18 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import {Link as RouterLink} from 'react-router-dom'
+import Link from '@material-ui/core/Link'
 
 const styles = {
   centerDiv: {
     margin: '10% auto',
-    width: '30%'
+    width: '30%',
+    textAlign: 'center'
   },
   title: {
     fontFamily: '"Comfortaa", sans-serif',
     textTransform: 'uppercase',
-    textAlign: 'center',
   },
   paper: {
     margin: '20px auto',
@@ -26,6 +28,9 @@ const styles = {
   },
   button: {
     margin: '10px auto'
+  },
+  topMargin: {
+    marginTop: 10
   }
 };
 
@@ -57,8 +62,18 @@ function CusLogin() {
           <br/>
 
           <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
+
+          <Typography variant="subtitle1" style={styles.topMargin}>Ещё нет аккаунта?</Typography>
+          <Link to="/customer/signup" component={RouterLink} variant="subtitle1">
+            Зарегистрироваться
+          </Link>
+
         </form>
       </Paper>
+
+      <Link to="/contractor/login" component={RouterLink} variant="h6" style={styles.changeRole}>
+        Я подрядчик
+      </Link>
     </div>
   )
 }
