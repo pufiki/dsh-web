@@ -47,10 +47,6 @@ function CusLogin() {
       <Paper elevation={4} style={styles.paper}>
         <Typography variant="h6" style={styles.paperTitle}>Вход</Typography>
         <form align="center">
-          <TextField id="name" label="Название компании" value={values.name} required
-                     name="name" onChange={handleChange('name')} margin="normal"
-                     variant="outlined" autoComplete="off" style={styles.field}/>
-          <br/>
           <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
                      autoComplete="email" margin="normal" variant="outlined" required
                      value={values.email} onChange={handleChange('email')}/>
@@ -59,10 +55,6 @@ function CusLogin() {
                      autoComplete="password" margin="normal" variant="outlined" required
                      value={values.password} onChange={handleChange('password')}/>
           <br/>
-          <TextField id="passwordConfirm" label="Подтверждение пароля" type="passwordConfirm"
-                     name="passwordConfirm" style={styles.field} required
-                     margin="normal" variant="outlined"
-                     value={values.passwordConfirm} onChange={handleChange('passwordConfirm')}/>
 
           <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
         </form>

@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Error404 from './Error404'
 
 import CusLogin from './pages/Logins/CusLogin'
+import CusSignup from './pages/Logins/CusSignup'
 
 const styles = {
   margin: {
@@ -21,6 +22,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/" component={ Home }/>
           <Route exact path="/customer/login" component={ CusLogin }/>
+          <Route exact path="/customer/signup" component={ CusSignup }/>
           <Route component={ Error404 }/>
         </Switch>
       </div>
