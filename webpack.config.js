@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: 'bundle/index.js',
   },
 
   module: {
@@ -30,7 +30,7 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    contentBase: './template',
+    contentBase: './public/template',
     publicPath: '/public/',
     port: 3000,
     hot: true

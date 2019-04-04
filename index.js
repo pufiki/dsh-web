@@ -6,8 +6,8 @@ const app = express();
 
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
-app.all('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'template/index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/template/index.html'));
 });
 
 
