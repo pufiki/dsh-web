@@ -25,7 +25,6 @@ const styles = {
     flexGrow: 1,
   },
   grow: {
-    marginLeft: 22,
     flexGrow: 1,
   },
   font: {
@@ -67,9 +66,10 @@ function Header() {
         <Link to="/contractors" component={RouterLink} variant="h6" color="inherit" style={styles.margin}>
           Подрядчики
         </Link>
-        <Link to="/requests" component={RouterLink} variant="h6" color="inherit" style={styles.grow}>
+        <Link to="/requests" component={RouterLink} variant="h6" color="inherit" style={styles.margin}>
           Заявки
         </Link>
+        <span style={styles.grow}/>
         <div>
           <IconButton color="inherit">
             <Search style={styles.icon} />
