@@ -31,6 +31,9 @@ const styles = {
   },
   topMargin: {
     marginTop: 10
+  },
+  changeRole: {
+    fontFamily: '"Comfortaa", sans-serif'
   }
 };
 
@@ -74,6 +77,7 @@ function CusLogin() {
       <Link to="/contractor/login" component={RouterLink} variant="h6" style={styles.changeRole}>
         Я подрядчик
       </Link>
+
     </div>
   )
 }
