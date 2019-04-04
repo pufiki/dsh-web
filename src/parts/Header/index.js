@@ -71,36 +71,41 @@ function Header() {
         </Link>
         <span style={styles.grow}/>
         <div>
-          <IconButton color="inherit">
-            <Search style={styles.icon} />
-          </IconButton>
-            <IconButton color="inherit" onClick={handleMenu} aria-haspopup="true"
-                        aria-owns={open ? 'menu-appbar' : undefined}>
-              <AccountCircle style={styles.icon} />
+          <Link to="/search" component={RouterLink} style={styles.link} color="inherit">
+            <IconButton color="inherit">
+              <Search style={styles.icon} />
             </IconButton>
-            <Menu id="appbar-login-menu" anchorEl={anchorEl}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              open={open} onClose={handleClose}>
-              <MenuList style={styles.menu}>
-                <Link to="/customer/login" component={RouterLink} style={styles.link}>
-                  <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                      <Assignment/>
-                    </ListItemIcon>
-                    <ListItemText inset primary="Заказчик" />
-                  </MenuItem>
-                </Link>
-                <Link to="/contractor/login" component={RouterLink} style={styles.link}>
-                  <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                      <Build/>
-                    </ListItemIcon>
-                    <ListItemText inset primary="Подрядчик" />
-                  </MenuItem>
-                </Link>
-              </MenuList>
-            </Menu>
+          </Link>
+
+          <IconButton color="inherit" onClick={handleMenu} aria-haspopup="true"
+                      aria-owns={open ? 'menu-appbar' : undefined}>
+            <AccountCircle style={styles.icon} />
+          </IconButton>
+
+          <Menu id="appbar-login-menu" anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={open} onClose={handleClose}>
+            <MenuList style={styles.menu}>
+              <Link to="/customer/login" component={RouterLink} style={styles.link}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Assignment/>
+                  </ListItemIcon>
+                  <ListItemText inset primary="Заказчик" />
+                </MenuItem>
+              </Link>
+              <Link to="/contractor/login" component={RouterLink} style={styles.link}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Build/>
+                  </ListItemIcon>
+                  <ListItemText inset primary="Подрядчик" />
+                </MenuItem>
+              </Link>
+            </MenuList>
+          </Menu>
+
         </div>
       </Toolbar>
     </AppBar>
