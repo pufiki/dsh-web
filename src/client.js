@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import Routes from './routes'
 
 import { Provider } from 'react-redux'
-import configureStore from '~/redux/configureStore'
+import configureStore from '@/redux/configureStore'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
