@@ -1,6 +1,18 @@
 const webpack = require('webpack');
 const path = require('path');
 
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+
+var paths = require('./src/jsconfig.json').compilerOptions.paths;
+
+paths = Object.keys(paths).reduce((obj, key) => {
+  obj[key.replace('/*', '')] = resolve('./src/' + paths[key][0].replace('/*', '').replace('./', ''));
+
+  return obj;
+}, {});
+
 module.exports = {
   entry: {
     client: './src/client.js'
@@ -13,8 +25,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src/'),
-      '*': path.resolve(__dirname, 'config/')
+      ...paths
     }
   },
 
