@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { serverFetch as meFetch } from '@/redux/serverFetch'
 
 import Header from './parts/Header'
 import Home from './pages/Home'
@@ -15,6 +14,10 @@ import Me from './pages/Me'
 import MeEdit from './pages/Me/Edit'
 
 import NewRequest from './pages/Requests/New'
+
+import Customers from './pages/Customers'
+import Contractors from './pages/Contractors'
+import Requests from './pages/Requests'
 
 const styles = {
   margin: {
@@ -35,9 +38,13 @@ const Routes = () => {
           <Route exact path="/contractor/signup" component={ ConSignup }/>
 
           <Route exact path="/me/edit" component={ MeEdit }/>
-          <Route exact path="/me" component={ Me } serverFetch={ meFetch }/>
+          <Route exact path="/me" component={ Me }/>
 
           <Route exact path="/request/new" component={ NewRequest }/>
+
+          <Route exact path="/customers" component={ Customers }/>
+          <Route exact path="/contractors" component={ Contractors }/>
+          <Route exact path="/requests" component={ Requests }/>
 
           <Route component={ Error404 }/>
         </Switch>
