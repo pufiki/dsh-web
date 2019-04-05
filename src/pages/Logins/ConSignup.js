@@ -12,6 +12,8 @@ import Select from '@material-ui/core/Select'
 import Chip from '@material-ui/core/Chip'
 import InputLabel from '@material-ui/core/InputLabel'
 
+import categories from '*/categories'
+
 const styles = {
   centerDiv: {
     margin: '10% auto',
@@ -42,25 +44,6 @@ const styles = {
     fontFamily: '"Comfortaa", sans-serif'
   }
 };
-
-const categories = [
-  {
-    label: 'Дворник',
-    value: '0',
-  },
-  {
-    label: 'Задворник',
-    value: '1',
-  },
-  {
-    label: 'Дворняга',
-    value: '2',
-  },
-  {
-    label: 'Дворовый',
-    value: '3',
-  },
-];
 
 function ConSignup() {
 

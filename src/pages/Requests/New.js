@@ -3,6 +3,14 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Input from '@material-ui/core/Input'
+import Select from '@material-ui/core/Select'
+import Chip from '@material-ui/core/Chip'
+import InputLabel from '@material-ui/core/InputLabel'
+
+import categories from '*/categories'
 
 const styles = {
   centerDiv: {
@@ -45,7 +53,8 @@ function NewRequest() {
 
   const [values, setValues] = React.useState({
     name: '',
-    description: ''
+    description: '',
+    specs: []
   });
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -66,7 +75,26 @@ function NewRequest() {
                      value={values.description} onChange={handleChange('description')}/>
           <br/>
 
-          <div>
+          <FormControl style={styles.field}>
+            <InputLabel htmlFor="select">Специализация</InputLabel>
+            <Select multiple value={values.specs} input={<Input id="select"/>} autoWidth={false}
+                    onChange={handleChange('specs')}
+                    renderValue={selected => (
+                      <div>
+                        {selected.map(value => (
+                          <Chip key={value} label={categories[value].label} />
+                        ))}
+                      </div>
+                    )}>
+              {categories.map(category => (
+                <MenuItem key={category.value} value={category.value}>
+                  {category.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <div style={styles.topMargin}>
             <input style={styles.fileInput} id="buttonFile" multiple type="file"/>
             <label htmlFor="buttonFile">
               <Button variant="outlined" color="primary" component="span">
