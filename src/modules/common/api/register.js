@@ -12,7 +12,7 @@ export class RegisterAPI extends BaseApiClient {
    */
   async register(type, payload) {
     try {
-      let result = await this.post(type);
+      let result = await this.post(type, payload);
 
       return result;
     } catch (e) {
