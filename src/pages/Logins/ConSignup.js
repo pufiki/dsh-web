@@ -6,6 +6,11 @@ import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import {Link as RouterLink} from 'react-router-dom'
 import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Input from '@material-ui/core/Input'
+import Select from '@material-ui/core/Select'
+import Chip from '@material-ui/core/Chip'
+import InputLabel from '@material-ui/core/InputLabel'
 
 const styles = {
   centerDiv: {
@@ -64,7 +69,7 @@ function ConSignup() {
     email: '',
     password: '',
     passwordConfirm: '',
-    select: ''
+    specs: []
   });
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -93,16 +98,28 @@ function ConSignup() {
                      margin="normal" variant="outlined"
                      value={values.passwordConfirm} onChange={handleChange('passwordConfirm')}/>
 
-          <TextField id="select" select label="Специализация" value={values.select}
-            onChange={handleChange('select')}
-            margin="normal" variant="outlined" style={styles.field}>
-            {categories.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+          <br/>
 
+          <FormControl style={styles.field}>
+            <InputLabel htmlFor="select">Специализация</InputLabel>
+            <Select multiple value={values.specs} input={<Input id="select"/>} autoWidth={false}
+                    onChange={handleChange('specs')}
+                    renderValue={selected => (
+                      <div>
+                        {selected.map(value => (
+                          <Chip key={value} label={categories[value].label} />
+                        ))}
+                      </div>
+                    )}>
+              {categories.map(category => (
+                <MenuItem key={category.value} value={category.value}>
+                  {category.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <br/>
           <Button variant="contained" color="primary" style={styles.button}>Создать</Button>
 
           <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>

@@ -16,6 +16,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as Actions from '~/redux/actions'
 
+import FormControl from '@material-ui/core/FormControl'
+import Input from '@material-ui/core/Input'
+import Select from '@material-ui/core/Select'
+import Chip from '@material-ui/core/Chip'
+import InputLabel from '@material-ui/core/InputLabel'
+
 const styles = {
   centerDiv: {
     margin: '10% auto',
@@ -36,6 +42,9 @@ const styles = {
   field: {
     width: '60%',
     margin: '0 auto'
+  },
+  selectLabel: {
+    marginRight: '-10%'
   },
   button: {
     margin: '10px auto'
@@ -85,7 +94,7 @@ class Edit extends React.Component {
       description: '',
       password: '',
       passwordConfirm: '',
-      select: '',
+      specs: [],
       phone: '',
       instagram: '',
       tg: '',
@@ -156,15 +165,24 @@ class Edit extends React.Component {
 
               {this.props.user === "contractor" &&
                 <ExpansionPanelDetails>
-                  <TextField id="select" select label="Специализация" value={values.select}
-                             onChange={(e) => this.handleChange(e, 'select')}
-                             margin="normal" variant="outlined" style={styles.field}>
-                    {categories.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                  <FormControl style={styles.field}>
+                    <InputLabel htmlFor="select">Специализация</InputLabel>
+                    <Select multiple value={values.specs} input={<Input id="select"/>} autoWidth={false}
+                            onChange={(e) => this.handleChange(e, 'specs')}
+                            renderValue={selected => (
+                              <div>
+                                {selected.map(value => (
+                                  <Chip key={value} label={categories[value].label} />
+                                ))}
+                              </div>
+                            )}>
+                      {categories.map(category => (
+                        <MenuItem key={category.value} value={category.value}>
+                          {category.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 </ExpansionPanelDetails>
               }
 
