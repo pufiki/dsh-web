@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDom from 'react-dom'
 import Routes from './routes'
 
+import { Provider } from 'react-redux'
+import configureStore from '~/redux/configureStore'
+
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
@@ -22,10 +25,12 @@ const theme = createMuiTheme({
 });
 
 ReactDom.render(
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline/>
-    <Routes/>
-  </MuiThemeProvider>,
+  <Provider store={configureStore({})}>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline/>
+      <Routes/>
+    </MuiThemeProvider>
+  </Provider>,
   document.getElementById('main'));
 
 module.hot.accept();

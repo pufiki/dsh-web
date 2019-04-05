@@ -5,9 +5,16 @@ module.exports = {
   entry: {
     client: './src/client.js'
   },
+
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle/index.js',
+  },
+
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src/')
+    }
   },
 
   module: {

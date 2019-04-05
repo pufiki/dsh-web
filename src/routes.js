@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { serverFetch as meFetch } from '~/redux/serverFetch'
 
 import Header from './parts/Header'
 import Home from './pages/Home'
@@ -31,8 +32,8 @@ const Routes = () => {
           <Route exact path="/contractor/login" component={ ConLogin }/>
           <Route exact path="/contractor/signup" component={ ConSignup }/>
 
-          <Route exact path="/me/edit" component={MeEdit}/>
-          <Route exact path="/me" component={Me}/>
+          <Route exact path="/me/edit" component={ MeEdit }/>
+          <Route exact path="/me" component={ Me } serverFetch={ meFetch }/>
 
           <Route component={ Error404 }/>
         </Switch>
