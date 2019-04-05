@@ -103,7 +103,7 @@ function ConSignup() {
             ))}
           </TextField>
 
-          <Button variant="contained" color="primary" style={styles.button}>Зарегистрироваться</Button>
+          <Button variant="contained" color="primary" style={styles.button}>Создать</Button>
 
           <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
           <Link to="/contractor/login" component={RouterLink} variant="subtitle1">

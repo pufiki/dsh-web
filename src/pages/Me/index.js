@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button'
 import {Link as RouterLink} from 'react-router-dom'
 import Link from '@material-ui/core/Link'
 import IconButton from '@material-ui/core/IconButton'
-import Search from '@material-ui/icons/Search'
 
 import { Email, Vk, Fb, Telegram, Phone, Instagram } from '../../parts/icons'
 
@@ -23,7 +22,7 @@ const styles = {
   title: {
     fontFamily: '"Comfortaa", sans-serif',
     float: 'left',
-    width: '70%',
+    width: '60%',
     textAlign: 'right',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
