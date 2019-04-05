@@ -14,7 +14,7 @@ Behind the visuals:
 * Babel 7
 * Material-ui
 
-###Installation
+### Installation
 
 Simple structure of the app allows you to install
 it on your machine or deploy to the server like

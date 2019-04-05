@@ -11,6 +11,7 @@ import ConLogin from './pages/Logins/ConLogin'
 import ConSignup from './pages/Logins/ConSignup'
 
 import Me from './pages/Me'
+import MeEdit from './pages/Me/Edit'
 
 const styles = {
   margin: {
@@ -30,6 +31,7 @@ const Routes = () => {
           <Route exact path="/contractor/login" component={ ConLogin }/>
           <Route exact path="/contractor/signup" component={ ConSignup }/>
 
+          <Route exact path="/me/edit" component={MeEdit}/>
           <Route exact path="/me" component={Me}/>
 
           <Route component={ Error404 }/>

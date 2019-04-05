@@ -17,7 +17,7 @@ const styles = {
   },
   paper: {
     margin: '20px auto',
-    padding: '10px 10px 25px'
+    padding: '10px 10px 15px'
   },
   title: {
     fontFamily: '"Comfortaa", sans-serif',
@@ -62,8 +62,7 @@ const styles = {
   },
   bottom: {
     clear: 'both',
-    margin: '35px 0 0',
-    textAlign: 'right'
+    textAlign: 'center'
   }
 };
 
@@ -102,11 +101,6 @@ function Me() {
           <a href="https://vk.com" target="_blank" color="inherit">
             <IconButton color="inherit">
               <Vk/>
-            </IconButton>
-          </a>
-          <a href="https://fb.com" target="_blank" color="inherit">
-            <IconButton color="inherit">
-              <Fb/>
             </IconButton>
           </a>
           <a href="https://t.me" target="_blank" color="inherit">
