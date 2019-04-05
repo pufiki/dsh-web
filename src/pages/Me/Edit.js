@@ -179,13 +179,8 @@ function Edit() {
               <Typography color="inherit">Фотография</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <input
-                accept="image/*"
-                style={styles.imgInput}
-                id="buttonFile"
-                multiple
-                type="file"
-              />
+              <input accept="image/*" style={styles.imgInput} id="buttonFile"
+                multiple type="file"/>
               <label htmlFor="buttonFile">
                 <Button variant="outlined" color="primary" component="span" style={styles.center}>
                   Загрузить

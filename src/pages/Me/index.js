@@ -32,6 +32,9 @@ const styles = {
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
+  grey: {
+    color: 'rgba(0, 0, 0, 0.54)'
+  },
   requests: {
     float: 'right',
     marginLeft: 10
@@ -87,7 +90,12 @@ class Me extends React.Component {
       <div style={styles.centerDiv}>
         <Paper elevation={4} style={styles.paper}>
           <div style={styles.top}>
-            <Typography variant="h6" style={styles.title}>ОАО "Сетевая компания"ОАО "Сетевая компания"</Typography>
+            <Typography variant="h6" style={styles.title}>
+              <span style={styles.grey}>
+                {this.props.user === "contractor" ? "Подрядчик": "Заказчик"}:&nbsp;
+              </span>
+              ОАО "Сетевая компания"ОАО "Сетевая компания"
+            </Typography>
             <Link to="/me/requests" component={RouterLink}>
               <Button variant="outlined" color="primary" style={styles.requests}>Заявки</Button>
             </Link>
@@ -101,6 +109,11 @@ class Me extends React.Component {
               <img alt="Фото компании" style={styles.image} src="https://images.unsplash.com/photo-1542372420-f50174a8ddd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1044&q=80"/>
             </div>
             <div style={styles.middleRight}>
+              {this.props.user === "contractor" &&
+              <Typography variant="body1" color="textSecondary" style={styles.description}>
+                Специализация: <span>Дворняга</span>
+              </Typography>
+              }
               <Typography variant="body1" color="inherit" style={styles.description}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent efficitur maximus
                 ex in consectetur. Maecenas auctor sem nunc. Praesent aliquam metus et turpis

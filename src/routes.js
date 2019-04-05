@@ -14,6 +14,8 @@ import ConSignup from './pages/Logins/ConSignup'
 import Me from './pages/Me'
 import MeEdit from './pages/Me/Edit'
 
+import NewRequest from './pages/Requests/New'
+
 const styles = {
   margin: {
     marginTop: 64
@@ -34,6 +36,8 @@ const Routes = () => {
 
           <Route exact path="/me/edit" component={ MeEdit }/>
           <Route exact path="/me" component={ Me } serverFetch={ meFetch }/>
+
+          <Route exact path="/request/new" component={ NewRequest }/>
 
           <Route component={ Error404 }/>
         </Switch>
