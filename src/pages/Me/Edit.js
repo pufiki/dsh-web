@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Actions from '~/redux/actions'
+import * as Actions from '@/redux/actions'
 
 import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
@@ -22,7 +22,7 @@ import Select from '@material-ui/core/Select'
 import Chip from '@material-ui/core/Chip'
 import InputLabel from '@material-ui/core/InputLabel'
 
-import categories from '*/categories'
+import categories from 'config/categories'
 
 const styles = {
   centerDiv: {

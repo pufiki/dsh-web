@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { serverFetch as meFetch } from '~/redux/serverFetch'
+import { serverFetch as meFetch } from '@/redux/serverFetch'
 
 import Header from './parts/Header'
 import Home from './pages/Home'
