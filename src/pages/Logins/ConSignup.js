@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select'
 import Chip from '@material-ui/core/Chip'
 import InputLabel from '@material-ui/core/InputLabel'
 
-import categories from '*/categories'
+import categories from 'config/categories'
 
 const styles = {
   centerDiv: {

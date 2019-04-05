@@ -9,9 +9,9 @@ import IconButton from '@material-ui/core/IconButton'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as Actions from '~/redux/actions'
+import * as Actions from '@/redux/actions'
 
-import { Email, Vk, Telegram, Phone, Instagram } from '~/parts/icons'
+import { Email, Vk, Telegram, Phone, Instagram } from '@/parts/icons'
 
 const styles = {
   centerDiv: {
