@@ -28,7 +28,7 @@ class CustomerAPI extends BaseApiClient {
    * }} payload
    */
   async login(payload) {
-    return await this.get(withQuery(`login/${SUFFIX}`, payload));
+    return await this.post(`login/${SUFFIX}`, payload);
   }
 
   /**
