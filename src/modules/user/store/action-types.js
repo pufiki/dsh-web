@@ -1,0 +1,1 @@
+export const USER_INFO_RECIEVED = 'USER_INFO_RECIEVED'
