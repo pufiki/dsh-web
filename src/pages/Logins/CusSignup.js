@@ -60,19 +60,14 @@ class CusSignup extends React.Component {
     this.setState({ ...this.state, [name]: event.target.value })
   }
 
-  async registerHandler() {
+  registerHandler() {
     const payload = {
       companyName: this.state.name,
       email: this.state.email,
       password: this.state.password
     };
 
-    try {
-      const result = await customerClient.register(payload);
-      console.log('registerHandler api result', result);
-    } catch (error) {
-      console.error(error)
-    }
+    this.props.actions.customerRegister(payload)
   }
 
   render() {
@@ -103,6 +98,9 @@ class CusSignup extends React.Component {
 
             <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрироваться</Button>
 
+            <p>{JSON.stringify(this.props.user)}</p>
+            <p>{JSON.stringify(this.props.customer)}</p>
+
             <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
             <Link to="/customer/login" component={RouterLink} variant="subtitle1">
               Войти
@@ -121,7 +119,8 @@ class CusSignup extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  customer: state.customer,
+  user: state.user,
 });
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
