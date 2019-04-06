@@ -1,3 +1,5 @@
 export default {
-  info: {}
+  info: {},
+  isLoading: false,
+  error: null
 }
