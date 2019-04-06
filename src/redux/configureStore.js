@@ -1,10 +1,23 @@
 import { applyMiddleware, createStore, compose } from 'redux'
+import { combineReducers } from 'redux'
 import rootReducer from './reducers'
+import customersReducer from '#/customer/store/reducers'
+import userReducer from '#/user/store/reducers'
+import adminReducer from '#/admin/store/reducers'
+import contractorReducer from '#/contractor/store/reducers'
 import thunk from 'redux-thunk'
 
-export default function configureStore(state) {
+const reducer = combineReducers({
+  root: rootReducer,
+  customer: customersReducer,
+  user: userReducer,
+  admin: adminReducer,
+  contractor: contractorReducer,
+})
+
+export default function configureStore(state = {}) {
   return compose(applyMiddleware(thunk))(createStore)(
-    rootReducer,
+    reducer,
     state,
   )
 }
