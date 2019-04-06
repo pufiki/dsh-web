@@ -18,7 +18,7 @@ import Build from '@material-ui/icons/Build'
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@material-ui/core/Link'
 
-import isAutherized from '@/HOCs/isAuthorized'
+import getUserInfo from '@/HOCs/getUserInfo'
 
 const styles = {
   margin: {
@@ -126,4 +126,4 @@ function Header() {
   )
 }
 
-export default isAutherized(Header)
+export default getUserInfo(Header)
