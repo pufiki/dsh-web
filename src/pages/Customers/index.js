@@ -47,7 +47,7 @@ class Customers extends React.Component {
     return(
       <Grid container spacing={24} style={styles.grid} justify="flex-start" alignItems="center">
         {customers.map(cont =>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4} key={cont.id}>
             <Card cont={cont}/>
           </Grid>
         )}

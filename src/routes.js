@@ -19,6 +19,7 @@ import MeEdit from 'pages/Me/Edit'
 
 import NewRequest from 'pages/Requests/New'
 import RequestCard from 'pages/Requests/Card'
+import Apply from 'pages/Requests/Apply'
 
 import Customers from 'pages/Customers'
 import Contractors from 'pages/Contractors'
@@ -84,6 +85,7 @@ const Routes = () => {
           <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props}/>}/>
 
           <Route exact path="/request/new" component={ NewRequest }/>
+          <Route exact path="/request/:id/apply" component={ Apply }/>
           <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props}/>}/>
 
           <Route exact path="/customers" component={ Customers }/>
