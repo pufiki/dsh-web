@@ -21,7 +21,7 @@ const styles = {
   },
   paper: {
     margin: '20px auto',
-    padding: '10px 10px 15px'
+    padding: '10px 20px 15px'
   },
   title: {
     fontFamily: '"Comfortaa", sans-serif',

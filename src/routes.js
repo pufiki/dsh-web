@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from 'parts/Header'
 import Home from 'pages/Home'
+import About from 'pages/About'
 import Error404 from './Error404'
 
 import CusLogin from 'pages/Logins/CusLogin'
@@ -32,6 +33,7 @@ const Routes = () => {
       <div style={styles.margin}>
         <Switch>
           <Route exact path="/" component={ Home }/>
+          <Route exact path="/about" component={ About }/>
           <Route exact path="/customer/login" component={ CusLogin }/>
           <Route exact path="/customer/signup" component={ CusSignup }/>
           <Route exact path="/contractor/login" component={ ConLogin }/>

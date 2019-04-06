@@ -69,6 +69,9 @@ function Header() {
         <Link to="/requests" component={RouterLink} variant="h6" color="inherit" style={styles.margin}>
           Заявки
         </Link>
+        <Link to="/about" component={RouterLink} variant="h6" color="inherit" style={styles.margin}>
+          Про нас
+        </Link>
         <span style={styles.grow}/>
         <div>
           <Link to="/search" component={RouterLink} style={styles.link} color="inherit">

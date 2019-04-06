@@ -50,6 +50,8 @@
     "webpack-dev-server": "^3.2.1"
   },
   "babel": {
-    "plugins": ["@babel/plugin-transform-runtime"]
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   }
 }
