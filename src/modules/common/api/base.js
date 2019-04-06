@@ -1,4 +1,4 @@
-import { GenericAPIClient, ResponseError, ResponseErrors } from 'kefetchup';
+import { GenericAPIClient, ResponseError, ResponseErrors } from 'kefetchup/dist/cjs';
 import { baseUrl, commonHeaders } from './config';
 
 export class BaseApiClient extends GenericAPIClient {
@@ -31,12 +31,13 @@ export class BaseApiClient extends GenericAPIClient {
       return json.payload || json;
     }
     catch (error) {
+      if (resp.status === 204) {
+        return Promise.resolve();
+      }
+
       throw new ResponseError('JSON parse error: ' + error, ResponseErrors.UnknownError, error);
     }
   }
-
-  _get = this.$alias('get');
-  _post = this.$alias('post');
 
   get(...args) {
     return this._get(...args);
@@ -51,6 +52,28 @@ export class BaseApiClient extends GenericAPIClient {
     return this._post(url, { ...fetchConfig, body }, overrideDefault);
   }
 
+  put(
+    url,
+    body,
+    fetchConfig = {},
+    overrideDefault
+  ) {
+    return this._put(url, { ...fetchConfig, body }, overrideDefault);
+  }
+
+  patch(
+    url,
+    body,
+    fetchConfig = {},
+    overrideDefault
+  ) {
+    return this._patch(url, { ...fetchConfig, body }, overrideDefault);
+  }
+
+  delete(...args) {
+    return this._delete(...args);
+  }
+
   constructor(
     subUrl = '',
     config = {}
@@ -62,5 +85,11 @@ export class BaseApiClient extends GenericAPIClient {
         ...(config.headers || {})
       },
     });
+
+    this._get = this.$alias('get');
+    this._post = this.$alias('post');
+    this._put = this.$alias('put');
+    this._patch = this.$alias('patch');
+    this._delete = this.$alias('delete');
   }
 }
