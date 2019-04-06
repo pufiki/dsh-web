@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -36,14 +39,22 @@ class AdminLogin extends React.Component{
 
     this.state = {
       name: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
+      password: ''
     };
   }
 
   handleChange(event, name) {
     this.setState({ ...this.state, [name]: event.target.value })
+  }
+
+  loginHandler() {
+    console.log(this.props)
+    const payload = {
+      username: this.state.name,
+      password: this.state.password
+    };
+
+    this.props.actions.adminLogin(payload)
   }
 
   render() {
@@ -55,16 +66,19 @@ class AdminLogin extends React.Component{
         <Paper elevation={4} style={styles.paper}>
           <Typography variant="h6" style={styles.paperTitle}>Вход</Typography>
           <form align="center">
-            <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
-                       autoComplete="email" margin="normal" variant="outlined" required
-                       value={values.email} onChange={(e) => this.handleChange(e, 'email')}/>
+            <TextField id="name" label="Имя пользователя" name="name" style={styles.field}
+                       autoComplete="name" margin="normal" variant="outlined" required
+                       value={values.name} onChange={(e) => this.handleChange(e, 'name')}/>
             <br/>
             <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
                        autoComplete="password" margin="normal" variant="outlined" required
                        value={values.password} onChange={(e) => this.handleChange(e, 'password')}/>
             <br/>
 
-            <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
+            <Button variant="contained" color="primary" style={styles.button} onClick={e => this.loginHandler(values)}>Войти</Button>
+
+            <p>{JSON.stringify(this.props.user)}</p>
+            <p>{JSON.stringify(this.props.admin)}</p>
           </form>
         </Paper>
       </div>
@@ -72,4 +86,15 @@ class AdminLogin extends React.Component{
   }
 }
 
-export default AdminLogin
+const mapStateToProps = (state) => ({
+  admin: state.admin,
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminLogin)
