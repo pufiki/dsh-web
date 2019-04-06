@@ -66,7 +66,9 @@ function CusLogin() {
 
           <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
 
-          <Typography variant="subtitle1" style={styles.topMargin}>htufq</Typography>
+          <Typography variant="subtitle1" style={styles.topMargin}>
+            Регистрация возможна только через сетевую компанию
+          </Typography>
 
         </form>
       </Paper>

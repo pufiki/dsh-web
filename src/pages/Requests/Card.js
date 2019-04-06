@@ -29,7 +29,7 @@ const styles = {
   },
   description: {
     display: 'inline-block',
-    textAlign: 'left',
+    textAlign: 'justify',
     margin: '20px 0 10px'
   }
 };
