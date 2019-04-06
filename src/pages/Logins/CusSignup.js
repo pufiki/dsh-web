@@ -1,4 +1,11 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
+
+import { customerClient } from '#/customer'
+
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -37,57 +44,90 @@ const styles = {
   }
 };
 
-function CusSignup() {
+class CusSignup extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const [values, setValues] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  });
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    };
+  }
 
-  return(
-    <div style={styles.centerDiv}>
-      <Typography variant="h4" style={styles.title}>Заказчик</Typography>
-      <Paper elevation={4} style={styles.paper}>
-        <Typography variant="h6" style={styles.paperTitle}>Регистрация</Typography>
-        <form align="center">
-          <TextField id="name" label="Название компании" value={values.name} required
-                     name="name" onChange={handleChange('name')} margin="normal"
-                     variant="outlined" autoComplete="off" style={styles.field}/>
-          <br/>
-          <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
-                     autoComplete="email" margin="normal" variant="outlined" required
-                     value={values.email} onChange={handleChange('email')}/>
-          <br/>
-          <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
-                     autoComplete="password" margin="normal" variant="outlined" required
-                     value={values.password} onChange={handleChange('password')}/>
-          <br/>
-          <TextField id="passwordConfirm" label="Подтверждение пароля" type="passwordConfirm"
-                     name="passwordConfirm" style={styles.field} required
-                     margin="normal" variant="outlined"
-                     value={values.passwordConfirm} onChange={handleChange('passwordConfirm')}/>
+  handleChange(event, name) {
+    this.setState({ ...this.state, [name]: event.target.value })
+  }
 
-          <Button variant="contained" color="primary" style={styles.button}>Зарегистрироваться</Button>
+  async registerHandler() {
+    const payload = {
+      companyName: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    };
 
-          <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
-          <Link to="/customer/login" component={RouterLink} variant="subtitle1">
-            Войти
-          </Link>
+    try {
+      const result = await customerClient.register(payload);
+      console.log('registerHandler api result', result);
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-        </form>
-      </Paper>
+  render() {
+    const values = this.state;
 
-      <Link to="/contractor/signup" component={RouterLink} variant="h6" style={styles.changeRole}>
-        Я подрядчик
-      </Link>
+    return(
+      <div style={styles.centerDiv}>
+        <Typography variant="h4" style={styles.title}>Заказчик</Typography>
+        <Paper elevation={4} style={styles.paper}>
+          <Typography variant="h6" style={styles.paperTitle}>Регистрация</Typography>
+          <form align="center">
+            <TextField id="name" label="Название компании" value={values.name} required
+                       name="name" onChange={e => this.handleChange(e, 'name')} margin="normal"
+                       variant="outlined" autoComplete="off" style={styles.field}/>
+            <br/>
+            <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
+                       autoComplete="email" margin="normal" variant="outlined" required
+                       value={values.email} onChange={e => this.handleChange(e, 'email')}/>
+            <br/>
+            <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
+                       autoComplete="password" margin="normal" variant="outlined" required
+                       value={values.password} onChange={e => this.handleChange(e, 'password')}/>
+            <br/>
+            <TextField id="passwordConfirm" label="Подтверждение пароля" type="password"
+                       name="passwordConfirm" style={styles.field} required
+                       margin="normal" variant="outlined"
+                       value={values.passwordConfirm} onChange={e => this.handleChange(e, 'passwordConfirm')}/>
 
-    </div>
-  )
+            <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрироваться</Button>
+
+            <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
+            <Link to="/customer/login" component={RouterLink} variant="subtitle1">
+              Войти
+            </Link>
+
+          </form>
+        </Paper>
+
+        <Link to="/contractor/signup" component={RouterLink} variant="h6" style={styles.changeRole}>
+          Я подрядчик
+        </Link>
+
+      </div>
+    )
+  }
 }
 
-export default CusSignup
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CusSignup)
