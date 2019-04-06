@@ -70,6 +70,8 @@ const Routes = () => {
 
           <Route exact path="/me/edit" component={ MeEdit }/>
           <Route exact path="/me" render={(props) => <Profile user={user} {...props}/>}/>
+          <Route exact path="/customer/:id" render={(props) => <Profile user={user} {...props}/>}/>
+          <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props}/>}/>
 
           <Route exact path="/request/new" component={ NewRequest }/>
 

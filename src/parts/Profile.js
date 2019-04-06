@@ -144,6 +144,7 @@ class Me extends React.Component {
 
 Me.propTypes = {
   user: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
     description: PropTypes.string,

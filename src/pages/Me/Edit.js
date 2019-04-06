@@ -73,12 +73,23 @@ class Edit extends React.Component {
       instagram: '',
       tg: '',
       vk: '',
-      fb: ''
+      fb: '',
+      photo: '',
+      photoError: ''
     };
   }
 
   handleChange(event, name) {
     this.setState({ ...this.state, [name]: event.target.value })
+  }
+
+  handlePhotoUpload(event) {
+    const file = event.target.files[0];
+    if(file.size < 5*1024*1024) {
+      this.setState({ photo: file.name, photoError: '' })
+    } else {
+      this.setState({ photoError: 'Too large', photo: ''})
+    }
   }
 
   componentDidMount() {
@@ -172,14 +183,17 @@ class Edit extends React.Component {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <input accept="image/*" style={styles.imgInput} id="buttonFile"
-                       multiple type="file"/>
+                       type="file" onChange={(e) => this.handlePhotoUpload(e)}/>
                 <label htmlFor="buttonFile">
                   <Button variant="outlined" color="primary" component="span" style={styles.center}>
                     Загрузить
                   </Button>
                 </label>
                 <Typography variant="body1" color="inherit" style={styles.fileName}>
-                  Название файла.png
+                  {values.photo || 'Название файла.png'}
+                </Typography>
+                <Typography variant="body1" color="error" style={styles.fileName}>
+                  {values.photoError || ''}
                 </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
