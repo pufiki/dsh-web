@@ -80,19 +80,20 @@ class Me extends React.Component {
   }
 
   componentDidMount() {
-    if(!this.props.user) {
+    if(!this.props.role) {
       this.props.actions.chooseUser()
     }
   }
 
   render() {
+    const { role } = this.props;
     return(
       <div style={styles.centerDiv}>
         <Paper elevation={4} style={styles.paper}>
           <div>
             <Typography variant="h6" style={styles.title}>
               <span style={styles.grey}>
-                {this.props.user === "contractor" ? "Подрядчик": "Заказчик"}:&nbsp;
+                {role === "contractor" ? "Подрядчик": "Заказчик"}:&nbsp;
               </span>
               ОАО "Сетевая компания"ОАО "Сетевая компания"
             </Typography>
@@ -109,7 +110,7 @@ class Me extends React.Component {
               <img alt="Фото компании" style={styles.image} src="https://images.unsplash.com/photo-1542372420-f50174a8ddd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1044&q=80"/>
             </div>
             <div style={styles.middleRight}>
-              {this.props.user === "contractor" &&
+              {role === "contractor" &&
               <Typography variant="body1" color="textSecondary" style={styles.description}>
                 Специализация: <span>Дворняга</span>
               </Typography>
@@ -159,7 +160,7 @@ class Me extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  role: state.user
 });
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
