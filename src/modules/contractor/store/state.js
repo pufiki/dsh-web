@@ -1,4 +1,5 @@
+import { requestableState } from '#/common/store/state'
+
 export default {
-  isLoading: false,
-  error: null
+  ...requestableState
 }
