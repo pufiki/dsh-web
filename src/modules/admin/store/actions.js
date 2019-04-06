@@ -1,31 +1,30 @@
 import { adminClient } from '#/admin'
-import * as types from './action-types'
-
+import * as requestableTypes from '#/common/store/action-types'
+import { requestError } from '#/common/store/actions'
 import * as userActions from '#/user/store/actions'
 
-export const requestError = (type, error) => ({
-  type,
-  error
-});
+const types = {
+  ...requestableTypes
+}
 
 export const adminLogin = (payload) => dispatch => {
-  dispatch({ type: types.LOGIN_REQUEST_START })
+  dispatch({ type: types.ANY_REQUEST_START })
   adminClient.login(payload)
     .then(userInfo => {
       if (userInfo) {
         dispatch(userActions.updateInfo(userInfo))
         localStorage.setItem('authToken', userInfo.token || '');
       } else {
-        dispatch(requestError(types.LOGIN_FAILURE, new Error('')))
+        dispatch(requestError(types.ANY_FAILURE, new Error('')))
         return;
       }
-      dispatch({ type: types.LOGIN_SUCCESS })
+      dispatch({ type: types.ANY_SUCCESS })
     })
     .catch(err => {
       console.error(err);
-      dispatch(requestError(types.LOGIN_FAILURE, err));
+      dispatch(requestError(types.ANY_FAILURE, err));
     })
     .finally(() => {
-      dispatch({ type: types.LOGIN_REQUEST_END })
+      dispatch({ type: types.ANY_REQUEST_END })
     })
 }
