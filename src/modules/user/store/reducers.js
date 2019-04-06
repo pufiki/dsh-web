@@ -1,6 +1,10 @@
 import initialState from './state'
 import {
-  USER_INFO_RECIEVED
+  USER_INFO_RECIEVED,
+  ANY_REQUEST_START,
+  ANY_REQUEST_END,
+  ANY_FAILURE,
+  ANY_SUCCESS
 } from './action-types'
 
 const user = (state = initialState, action) => {

@@ -48,7 +48,6 @@ class AdminLogin extends React.Component{
   }
 
   loginHandler() {
-    console.log(this.props)
     const payload = {
       username: this.state.name,
       password: this.state.password

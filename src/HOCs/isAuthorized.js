@@ -1,21 +1,26 @@
 import React from 'react'
 import * as Actions from '@/redux/actions'
+import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
 
 
-class isAuthorizedHOC extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-    if(!this.props.user) {
-      this.props.actions.getUser();
+export default function isAuthorizedHOC (ChildComponent) {
+  class isAuthorized extends React.Component {
+    constructor(props){
+      super(props);
+
+    }
+    componentDidMount() {
+      this.props.actions.userMe();
+    }
+    render(){
+      return <ChildComponent user={this.props.user} {...this.props}/>
     }
   }
-  render() {
-    const ChildComponent = this.props.children;
-    return <ChildComponent user={this.props.user} {...this.props}/>
-  }
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(isAuthorized)
 }
 
 const mapStateToProps = (state) => ({
@@ -24,8 +29,3 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(isAuthorizedHOC)
