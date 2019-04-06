@@ -1,4 +1,10 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
+
+import { withRouter } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -45,80 +51,116 @@ const styles = {
   }
 };
 
-function ConSignup() {
+class ConSignup extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const [values, setValues] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    specs: []
-  });
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+      specs: []
+    };
+  }
 
-  return(
-    <div style={styles.centerDiv}>
-      <Typography variant="h4" style={styles.title}>Подрядчик</Typography>
-      <Paper elevation={4} style={styles.paper}>
-        <Typography variant="h6" style={styles.paperTitle}>Регистрация</Typography>
-        <form align="center">
-          <TextField id="name" label="Название компании" value={values.name} required
-                     name="name" onChange={handleChange('name')} margin="normal"
-                     variant="outlined" autoComplete="off" style={styles.field}/>
-          <br/>
-          <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
-                     autoComplete="email" margin="normal" variant="outlined" required
-                     value={values.email} onChange={handleChange('email')}/>
-          <br/>
-          <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
-                     autoComplete="password" margin="normal" variant="outlined" required
-                     value={values.password} onChange={handleChange('password')}/>
-          <br/>
-          <TextField id="passwordConfirm" label="Подтверждение пароля" type="passwordConfirm"
-                     name="passwordConfirm" style={styles.field} required
-                     margin="normal" variant="outlined"
-                     value={values.passwordConfirm} onChange={handleChange('passwordConfirm')}/>
+  handleChange(name) {
+    return event => {
+      this.setState({ ...this.state, [name]: event.target.value })
+    }
+  }
 
-          <br/>
+  registerHandler() {
+    const payload = {
+      companyName: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      workSpecialization: this.state.specs.map(el => Number(el)),
+    };
 
-          <FormControl style={styles.field}>
-            <InputLabel htmlFor="select">Специализация</InputLabel>
-            <Select multiple value={values.specs} input={<Input id="select"/>} autoWidth={false}
-                    onChange={handleChange('specs')}
-                    renderValue={selected => (
-                      <div>
-                        {selected.map(value => (
-                          <Chip key={value} label={categories[value].label} />
-                        ))}
-                      </div>
-                    )}>
-              {categories.map(category => (
-                <MenuItem key={category.value} value={category.value}>
-                  {category.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+    this.props.actions.contractorRegister(payload, () => {
+      this.props.history.push('/')
+    })
+  }
 
-          <br/>
-          <Button variant="contained" color="primary" style={styles.button}>Создать</Button>
+  render() {
+    const values = this.state;
 
-          <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
-          <Link to="/contractor/login" component={RouterLink} variant="subtitle1">
-            Войти
+    return (
+      <div style={styles.centerDiv}>
+        <Typography variant="h4" style={styles.title}>Подрядчик</Typography>
+        <Paper elevation={4} style={styles.paper}>
+          <Typography variant="h6" style={styles.paperTitle}>Регистрация</Typography>
+          <form align="center">
+            <TextField id="name" label="Название компании" value={values.name} required
+              name="name" onChange={this.handleChange('name')} margin="normal"
+              variant="outlined" autoComplete="off" style={styles.field} />
+            <br />
+            <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
+              autoComplete="email" margin="normal" variant="outlined" required
+              value={values.email} onChange={this.handleChange('email')} />
+            <br />
+            <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
+              autoComplete="password" margin="normal" variant="outlined" required
+              value={values.password} onChange={this.handleChange('password')} />
+            <br />
+            <TextField id="passwordConfirm" label="Подтверждение пароля" type="password"
+              name="passwordConfirm" style={styles.field} required
+              margin="normal" variant="outlined"
+              value={values.passwordConfirm} onChange={this.handleChange('passwordConfirm')} />
+
+            <br />
+
+            <FormControl style={styles.field}>
+              <InputLabel htmlFor="select">Специализация</InputLabel>
+              <Select multiple value={values.specs} input={<Input id="select" />} autoWidth={false}
+                onChange={this.handleChange('specs')}
+                renderValue={selected => (
+                  <div>
+                    {selected.map(value => (
+                      <Chip key={value} label={categories[value].label} />
+                    ))}
+                  </div>
+                )}>
+                {categories.map(category => (
+                  <MenuItem key={category.value} value={category.value}>
+                    {category.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Typography variant="subtitle1" style={styles.topMargin}>{this.props.contractor.error ? ('Ошибка ' + this.props.contractor.error.status) : ''}</Typography>
+
+            <br />
+            <Button variant="contained" disabled={this.props.contractor.isLoading} color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Создать</Button>
+
+            <Typography variant="subtitle1" style={styles.topMargin}>Уже есть аккаунт?</Typography>
+            <Link to="/contractor/login" component={RouterLink} variant="subtitle1">
+              Войти
           </Link>
 
-        </form>
-      </Paper>
+          </form>
+        </Paper>
 
-      <Link to="/customer/signup" component={RouterLink} variant="h6" style={styles.changeRole}>
-        Я заказчик
+        <Link to="/customer/signup" component={RouterLink} variant="h6" style={styles.changeRole}>
+          Я заказчик
       </Link>
 
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default ConSignup
+const mapStateToProps = (state) => ({
+  contractor: state.contractor,
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ConSignup))
