@@ -18,6 +18,7 @@ import Profile from 'parts/Profile'
 import MeEdit from 'pages/Me/Edit'
 
 import NewRequest from 'pages/Requests/New'
+import RequestCard from 'pages/Requests/Card'
 
 import Customers from 'pages/Customers'
 import Contractors from 'pages/Contractors'
@@ -49,6 +50,15 @@ const user = {
   }
 };
 
+const request = {
+  id: 0,
+  name: 'Заявка 1',
+  description: 'Какое-то непонятное описание',
+  author: 'Иванов Иван',
+  comOffers: 5,
+  date: '06-04-2019 18:32'
+};
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -74,6 +84,7 @@ const Routes = () => {
           <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props}/>}/>
 
           <Route exact path="/request/new" component={ NewRequest }/>
+          <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props}/>}/>
 
           <Route exact path="/customers" component={ Customers }/>
           <Route exact path="/contractors" component={ Contractors }/>

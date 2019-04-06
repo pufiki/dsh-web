@@ -30,7 +30,7 @@ export default function isAuthorizedHOC (ChildComponent) {
     }
     render(){
       const childs = <ChildComponent user={this.props.user} {...this.props} />
-      const noAccess = <Typography variant="h3" style={styles.noAccess} color="error">You have no access</Typography>
+      const noAccess = <Typography variant="h3" style={styles.noAccess} color="error">У вас нет доступа</Typography>
       const loading = <CircularProgress color="primary" style={styles.loading}/>
       if (this.props.user.isLoading) {
         return loading

@@ -156,7 +156,7 @@ Me.propTypes = {
       telegram: PropTypes.string,
       vk: PropTypes.string
     })
-  })
+  }).isRequired
 };
 
 export default Me

@@ -20,7 +20,6 @@ const requests = [
     name: 'Заявка 1',
     description: 'Какое-то непонятное описание',
     author: 'Иванов Иван',
-    specizalization: 'Офис',
     comOffers: 5,
     date: '06-04-2019 18:32'
   },
@@ -31,7 +30,6 @@ const requests = [
       '\n' +
       'Nunc accumsan sem magna, nec condimentum odio faucibus nec. Morbi vel arcu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In commodo pellentesque sapien, et pharetra elit interdum sed. Integer iaculis sapien dui. Vivamus.',
     author: 'Иванов Иван',
-    specizalization: 'Офис',
     comOffers: 5,
     date: '06-04-2019 18:32'
   },
@@ -40,7 +38,6 @@ const requests = [
     name: 'Заявка 1',
     description: 'Какое-то непонятное описание',
     author: 'Иванов Иван',
-    specizalization: 'Офис',
     comOffers: 5,
     date: '06-04-2019 18:32'
   }
@@ -56,7 +53,7 @@ class Requests extends React.Component {
       <div style={styles.div}>
         {requests.map(request => (
           <div style={styles.card} key={request.id}>
-            <RequestCard req={request}/>
+            <RequestCard request={request}/>
           </div>
           ))}
       </div>
