@@ -1,5 +1,12 @@
 import { userClient } from '#/user'
-import * as types from './action-types'
+import * as userTypes from './action-types'
+import * as requestableTypes from '#/common/store/action-types'
+import { requestError } from '#/common/store/actions'
+
+const types = {
+  ...requestableTypes,
+  ...userTypes
+}
 
 export const updateInfo = (userInfo) => ({
   type: types.USER_INFO_RECIEVED,
