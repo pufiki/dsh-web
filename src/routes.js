@@ -7,6 +7,7 @@ import About from 'pages/About'
 import Error404 from './Error404'
 
 import AdminPage from 'pages/Admin'
+import AdminLogin from 'pages/Admin/Login'
 
 import CusLogin from 'pages/Logins/CusLogin'
 import CusSignup from 'pages/Logins/CusSignup'
@@ -40,6 +41,7 @@ const Routes = () => {
           <Route exact path="/admin" render={(props) => <AdminPage value={0} {...props} />}/>
           <Route exact path="/admin/acceptance" render={(props) => <AdminPage value={0} {...props} />}/>
           <Route exact path="/admin/registration" render={(props) => <AdminPage value={1} {...props} />}/>
+          <Route exact path="/admin/login" component={ AdminLogin }/>
 
           <Route exact path="/customer/login" component={ CusLogin }/>
           <Route exact path="/customer/signup" component={ CusSignup }/>

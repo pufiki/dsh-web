@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import Fingerprint from '@material-ui/icons/Fingerprint'
 import Search from '@material-ui/icons/Search'
 import Assignment from '@material-ui/icons/Assignment'
 import Build from '@material-ui/icons/Build'
@@ -104,6 +105,14 @@ function Header() {
                     <Build/>
                   </ListItemIcon>
                   <ListItemText inset primary="Подрядчик" />
+                </MenuItem>
+              </Link>
+              <Link to="/admin/login" component={RouterLink} style={styles.link}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Fingerprint/>
+                  </ListItemIcon>
+                  <ListItemText inset primary="Сетевая компания" />
                 </MenuItem>
               </Link>
             </MenuList>
