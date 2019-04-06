@@ -66,10 +66,7 @@ function CusLogin() {
 
           <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
 
-          <Typography variant="subtitle1" style={styles.topMargin}>Ещё нет аккаунта?</Typography>
-          <Link to="/customer/signup" component={RouterLink} variant="subtitle1">
-            Зарегистрироваться
-          </Link>
+          <Typography variant="subtitle1" style={styles.topMargin}>htufq</Typography>
 
         </form>
       </Paper>
