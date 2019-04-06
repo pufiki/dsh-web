@@ -89,7 +89,7 @@ class Me extends React.Component {
     return(
       <div style={styles.centerDiv}>
         <Paper elevation={4} style={styles.paper}>
-          <div style={styles.top}>
+          <div>
             <Typography variant="h6" style={styles.title}>
               <span style={styles.grey}>
                 {this.props.user === "contractor" ? "Подрядчик": "Заказчик"}:&nbsp;

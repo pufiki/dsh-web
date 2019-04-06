@@ -6,6 +6,8 @@ import Home from 'pages/Home'
 import About from 'pages/About'
 import Error404 from './Error404'
 
+import AdminPage from 'pages/Admin'
+
 import CusLogin from 'pages/Logins/CusLogin'
 import CusSignup from 'pages/Logins/CusSignup'
 import ConLogin from 'pages/Logins/ConLogin'
@@ -34,6 +36,11 @@ const Routes = () => {
         <Switch>
           <Route exact path="/" component={ Home }/>
           <Route exact path="/about" component={ About }/>
+
+          <Route exact path="/admin" render={(props) => <AdminPage value={0} {...props} />}/>
+          <Route exact path="/admin/acceptance" render={(props) => <AdminPage value={0} {...props} />}/>
+          <Route exact path="/admin/registration" render={(props) => <AdminPage value={1} {...props} />}/>
+
           <Route exact path="/customer/login" component={ CusLogin }/>
           <Route exact path="/customer/signup" component={ CusSignup }/>
           <Route exact path="/contractor/login" component={ ConLogin }/>

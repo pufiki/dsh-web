@@ -22,7 +22,7 @@ const styles = {
     marginLeft: 22
   },
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   grow: {
     flexGrow: 1,
