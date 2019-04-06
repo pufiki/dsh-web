@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import {Link as RouterLink} from 'react-router-dom'
-import MenuItem from '@material-ui/core/MenuItem'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -15,14 +14,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as Actions from '@/redux/actions'
-
-import FormControl from '@material-ui/core/FormControl'
-import Input from '@material-ui/core/Input'
-import Select from '@material-ui/core/Select'
-import Chip from '@material-ui/core/Chip'
-import InputLabel from '@material-ui/core/InputLabel'
-
-import categories from 'config/categories'
 
 const styles = {
   centerDiv: {
@@ -133,7 +124,7 @@ class Edit extends React.Component {
 
             <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography color="inherit">Название и описание, специализация</Typography>
+                <Typography color="inherit">Название и описание</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <TextField id="description" label="Описание" name="description" fullWidth
@@ -145,29 +136,6 @@ class Edit extends React.Component {
                            name="name" onChange={(e) => this.handleChange(e, 'name')} margin="normal"
                            variant="outlined" autoComplete="off" style={styles.field}/>
               </ExpansionPanelDetails>
-
-              {this.props.user === "contractor" &&
-                <ExpansionPanelDetails>
-                  <FormControl style={styles.field}>
-                    <InputLabel htmlFor="select">Специализация</InputLabel>
-                    <Select multiple value={values.specs} input={<Input id="select"/>} autoWidth={false}
-                            onChange={(e) => this.handleChange(e, 'specs')}
-                            renderValue={selected => (
-                              <div>
-                                {selected.map(value => (
-                                  <Chip key={value} label={categories[value].label} />
-                                ))}
-                              </div>
-                            )}>
-                      {categories.map(category => (
-                        <MenuItem key={category.value} value={category.value}>
-                          {category.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </ExpansionPanelDetails>
-              }
 
             </ExpansionPanel>
 
