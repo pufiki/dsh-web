@@ -77,8 +77,8 @@ class AdminLogin extends React.Component{
 
             <Button variant="contained" color="primary" style={styles.button} onClick={e => this.loginHandler(values)}>Войти</Button>
 
-            <p>{JSON.stringify(this.props.user)}</p>
-            <p>{JSON.stringify(this.props.admin)}</p>
+            {/*<p>{JSON.stringify(this.props.user)}</p>*/}
+            {/*<p>{JSON.stringify(this.props.admin)}</p>*/}
           </form>
         </Paper>
       </div>

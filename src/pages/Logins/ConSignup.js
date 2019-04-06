@@ -11,14 +11,6 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import {Link as RouterLink} from 'react-router-dom'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Input from '@material-ui/core/Input'
-import Select from '@material-ui/core/Select'
-import Chip from '@material-ui/core/Chip'
-import InputLabel from '@material-ui/core/InputLabel'
-
-import categories from 'config/categories'
 
 const styles = {
   centerDiv: {
@@ -108,27 +100,7 @@ class ConSignup extends React.Component {
               name="passwordConfirm" style={styles.field} required
               margin="normal" variant="outlined"
               value={values.passwordConfirm} onChange={this.handleChange('passwordConfirm')} />
-
             <br />
-
-            <FormControl style={styles.field}>
-              <InputLabel htmlFor="select">Специализация</InputLabel>
-              <Select multiple value={values.specs} input={<Input id="select" />} autoWidth={false}
-                onChange={this.handleChange('specs')}
-                renderValue={selected => (
-                  <div>
-                    {selected.map(value => (
-                      <Chip key={value} label={categories[value].label} />
-                    ))}
-                  </div>
-                )}>
-                {categories.map(category => (
-                  <MenuItem key={category.value} value={category.value}>
-                    {category.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
 
             <Typography variant="subtitle1" style={styles.topMargin}>{this.props.contractor.error ? ('Ошибка ' + this.props.contractor.error.status) : ''}</Typography>
 
@@ -145,7 +117,7 @@ class ConSignup extends React.Component {
 
         <Link to="/customer/signup" component={RouterLink} variant="h6" style={styles.changeRole}>
           Я заказчик
-      </Link>
+        </Link>
 
       </div>
     )
