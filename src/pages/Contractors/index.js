@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
+import isAuthorized from '@/HOCs/isAuthorized'
 
 import Card from './Card'
 
@@ -56,4 +57,4 @@ class Contractors extends React.Component {
   }
 }
 
-export default Contractors
+export default isAuthorized(Contractors)
