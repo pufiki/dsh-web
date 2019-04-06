@@ -1,3 +1,8 @@
+export * from '#/customer/store/actions'
+export * from '#/user/store/actions'
+export * from '#/admin/store/actions'
+export * from '#/contractor/store/actions'
+
 export const CHOOSE_USER = 'CHOOSE_USER';
 
 export const chooseUser = () => (dispatch) => {
