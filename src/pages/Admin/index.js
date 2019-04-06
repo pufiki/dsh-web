@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
@@ -43,5 +44,9 @@ class AdminPage extends React.Component {
     )
   }
 }
+
+AdminPage.propTypes = {
+  value: PropTypes.number.isRequired
+};
 
 export default withRouter(AdminPage)

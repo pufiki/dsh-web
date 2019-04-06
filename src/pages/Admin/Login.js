@@ -58,6 +58,7 @@ class AdminLogin extends React.Component{
 
   render() {
     const values = this.state;
+    console.log(this.props.admin);
 
     return(
       <div style={styles.centerDiv}>

@@ -14,7 +14,7 @@ import CusSignup from 'pages/Logins/CusSignup'
 import ConLogin from 'pages/Logins/ConLogin'
 import ConSignup from 'pages/Logins/ConSignup'
 
-import Me from 'pages/Me'
+import Profile from 'parts/Profile'
 import MeEdit from 'pages/Me/Edit'
 
 import NewRequest from 'pages/Requests/New'
@@ -26,6 +26,26 @@ import Requests from 'pages/Requests'
 const styles = {
   margin: {
     marginTop: 64
+  }
+};
+
+const user = {
+  name: 'Вася Пупкин',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus placerat,' +
+    ' neque a viverra interdum, leo massa eleifend mi, vel auctor metus ante pretium urna. Ut' +
+    ' in ullamcorper nisi. Integer sed ex nisi. Aliquam lacinia non tortor a volutpat. Fusce' +
+    ' in accumsan dui. Maecenas consequat nunc sit amet purus commodo convallis. Etiam sodales' +
+    ' pulvinar erat a semper.\n Ut venenatis gravida lobortis. Vestibulum vulputate tempus arcu.' +
+    ' Ut pulvinar nibh id maximus eleifend. Suspendisse aliquet, nibh non mollis sodales, diam' +
+    ' ligula ullamcorper ex, eleifend fermentum risus orci et ex. Donec at dolor nulla. Cras' +
+    ' condimentum nulla sed consectetur viverra. Donec at euismod eros.',
+  photo: 'https://images.unsplash.com/photo-1542372420-f50174a8ddd4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1044&q=80',
+  email: 'vasyapupkin@gmail.com',
+  contacts: {
+    phone: '80001112233',
+    instagram: '',
+    telegram: '',
+    vk: ''
   }
 };
 
@@ -49,7 +69,7 @@ const Routes = () => {
           <Route exact path="/contractor/signup" component={ ConSignup }/>
 
           <Route exact path="/me/edit" component={ MeEdit }/>
-          <Route exact path="/me" component={ Me }/>
+          <Route exact path="/me" render={(props) => <Profile user={user} {...props}/>}/>
 
           <Route exact path="/request/new" component={ NewRequest }/>
 
