@@ -1,23 +1,23 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Header from './parts/Header'
-import Home from './pages/Home'
+import Header from 'parts/Header'
+import Home from 'pages/Home'
 import Error404 from './Error404'
 
-import CusLogin from './pages/Logins/CusLogin'
-import CusSignup from './pages/Logins/CusSignup'
-import ConLogin from './pages/Logins/ConLogin'
-import ConSignup from './pages/Logins/ConSignup'
+import CusLogin from 'pages/Logins/CusLogin'
+import CusSignup from 'pages/Logins/CusSignup'
+import ConLogin from 'pages/Logins/ConLogin'
+import ConSignup from 'pages/Logins/ConSignup'
 
-import Me from './pages/Me'
-import MeEdit from './pages/Me/Edit'
+import Me from 'pages/Me'
+import MeEdit from 'pages/Me/Edit'
 
-import NewRequest from './pages/Requests/New'
+import NewRequest from 'pages/Requests/New'
 
-import Customers from './pages/Customers'
-import Contractors from './pages/Contractors'
-import Requests from './pages/Requests'
+import Customers from 'pages/Customers'
+import Contractors from 'pages/Contractors'
+import Requests from 'pages/Requests'
 
 const styles = {
   margin: {
