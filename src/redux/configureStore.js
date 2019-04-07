@@ -5,6 +5,7 @@ import customersReducer from '#/customer/store/reducers'
 import userReducer from '#/user/store/reducers'
 import adminReducer from '#/admin/store/reducers'
 import contractorReducer from '#/contractor/store/reducers'
+import { ToastReducer } from 'parts/Toasts'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   user: userReducer,
   admin: adminReducer,
   contractor: contractorReducer,
+  toast: ToastReducer,
 })
 
 export default function configureStore(state = {}) {
