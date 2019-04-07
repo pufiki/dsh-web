@@ -1,6 +1,9 @@
 import React from 'react'
 
 import RequestCard from './Card'
+import {Link as RouterLink} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import Link from '@material-ui/core/Link'
 
 const styles = {
   div: {
@@ -11,6 +14,12 @@ const styles = {
   card: {
     width: '100%',
     margin: '15px auto'
+  },
+  newRequest: {
+    textDecoration: 'none',
+    textAlign: 'center',
+    margin: '0 0 0 40%',
+    transform: 'translate(-50%, 0)'
   }
 };
 
@@ -51,6 +60,9 @@ class Requests extends React.Component {
   render() {
     return (
       <div style={styles.div}>
+        <Link to="/request/new" component={RouterLink} color="inherit" style={styles.newRequest}>
+          <Button variant="outlined" color="primary">Новая заявка</Button>
+        </Link>
         {requests.map(request => (
           <div style={styles.card} key={request.id}>
             <RequestCard request={request}/>

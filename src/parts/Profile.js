@@ -104,8 +104,8 @@ class Me extends React.Component {
               <img alt="Фото компании" style={styles.image} src={user.photo || ''}/>
             </div>
             <div style={styles.middleRight}>
-              <Typography variant="body1" color="inherit" style={styles.description}>
-                {user.description || ''}
+              <Typography variant="body1" color="inherit" style={styles.description}
+                          dangerouslySetInnerHTML={{__html: user.description.replace('\n', '<br/><br/>') || ''}}>
               </Typography>
             </div>
           </div>
