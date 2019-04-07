@@ -7,8 +7,7 @@ export const requestableReducerFactory = (preffix) => ({
     return {
       ...state,
       isLoading: true,
-      error: null,
-      toast: null
+      error: null
     }
   },
   [preffix + 'ANY_REQUEST_END'](state) {
@@ -20,16 +19,14 @@ export const requestableReducerFactory = (preffix) => ({
   [preffix + 'ANY_SUCCESS'](state) {
     return {
       ...state,
-      error: null,
-      toast: null
+      error: null
     }
   },
   [preffix + 'ANY_FAILURE'](state, action, errorMapper = defaultErrorMapper) {
     const error = action.error || new Error('Error')
     return {
       ...state,
-      error,
-      toast: errorMapper(error)
+      error
     }
   }
 })
