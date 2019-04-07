@@ -1,5 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { ToastActions } from 'parts/Toasts'
 
 import Header from 'parts/Header'
 import Home from 'pages/Home'
@@ -16,6 +19,7 @@ import ConSignup from 'pages/Logins/ConSignup'
 
 import Profile from 'parts/Profile'
 import MeEdit from 'pages/Me/Edit'
+import Toast from 'parts/Toasts'
 
 import NewRequest from 'pages/Requests/New'
 import RequestCard from 'pages/Requests/Card'
@@ -62,51 +66,67 @@ const request = {
   date: '06-04-2019 18:32'
 };
 
-const Routes = () => {
-  return (
-    <BrowserRouter>
-      <Header/>
-      <div style={styles.margin}>
-        <Switch>
-          <Route exact path="/" component={ Home }/>
-          <Route exact path="/about" component={ About }/>
+class Routes extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-          <Route exact path="/admin" render={(props) => <AdminPage value={0} {...props} />}/>
-          <Route exact path="/admin/acceptance" render={(props) => <AdminPage value={0} {...props} />}/>
-          <Route exact path="/admin/registration" render={(props) => <AdminPage value={1} {...props} />}/>
-          <Route exact path="/admin/login" component={ AdminLogin }/>
+  render() {
+    return (
+      <BrowserRouter>
+        <Header />
+        <div style={styles.margin}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
 
-          <Route exact path="/customer/login" component={ CusLogin }/>
-          <Route exact path="/customer/signup" component={ CusSignup }/>
-          <Route exact path="/contractor/login" component={ ConLogin }/>
-          <Route exact path="/contractor/signup" component={ ConSignup }/>
+            <Route exact path="/admin" render={(props) => <AdminPage value={0} {...props} />} />
+            <Route exact path="/admin/acceptance" render={(props) => <AdminPage value={0} {...props} />} />
+            <Route exact path="/admin/registration" render={(props) => <AdminPage value={1} {...props} />} />
+            <Route exact path="/admin/login" component={AdminLogin} />
 
-          <Route exact path="/me/edit" component={ MeEdit }/>
+            <Route exact path="/customer/login" component={CusLogin} />
+            <Route exact path="/customer/signup" component={CusSignup} />
+            <Route exact path="/contractor/login" component={ConLogin} />
+            <Route exact path="/contractor/signup" component={ConSignup} />
 
-          <Route exact path="/me/requests" component={ Requests }/>
-          <Route exact path="/requests" component={ Requests }/>
-          <Route exact path="/contractor/:id/requests" component={ Requests }/>
-          <Route exact path="/customer/:id/requests" component={ Requests }/>
+            <Route exact path="/me/edit" component={MeEdit} />
 
-          <Route exact path="/me" render={(props) => <Profile user={user} {...props}/>}/>
-          <Route exact path="/customer/:id" render={(props) => <Profile user={user} {...props}/>}/>
-          <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props}/>}/>
+            <Route exact path="/me/requests" component={Requests} />
+            <Route exact path="/requests" component={Requests} />
+            <Route exact path="/contractor/:id/requests" component={Requests} />
+            <Route exact path="/customer/:id/requests" component={Requests} />
 
-          <Route exact path="/request/new" component={ NewRequest }/>
-          <Route exact path="/request/:id/apply" component={ Apply }/>
-          <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props}/>}/>
-          <Route exact path="/request/:id/discuss" component={ Discuss }/>
-          <Route exact path="/request/:id/feedback" component={ Feedback }/>
+            <Route exact path="/me" render={(props) => <Profile user={user} {...props} />} />
+            <Route exact path="/customer/:id" render={(props) => <Profile user={user} {...props} />} />
+            <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props} />} />
 
-          <Route exact path="/customers" component={ Customers }/>
-          <Route exact path="/contractors" component={ Contractors }/>
+            <Route exact path="/request/new" component={NewRequest} />
+            <Route exact path="/request/:id/apply" component={Apply} />
+            <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props} />} />
+            <Route exact path="/request/:id/discuss" component={Discuss} />
+            <Route exact path="/request/:id/feedback" component={Feedback} />
 
-          <Route component={ Error404 }/>
-        </Switch>
-      </div>
+            <Route exact path="/customers" component={Customers} />
+            <Route exact path="/contractors" component={Contractors} />
 
-    </BrowserRouter>
-  )
-};
+            <Route component={Error404} />
+          </Switch>
+        </div>
+        <Toast message={this.props.toast.data ? this.props.toast.data.text : ''} status={this.props.toast.data ? this.props.toast.data.status : 'info'} closeFunc={() => this.props.actions.closeToast()} open={!!this.props.toast.show} />
+      </BrowserRouter>
+    )
+  }
+}
 
-export default Routes
+const mapStateToProps = (state) => ({
+  toast: state.toast,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(ToastActions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Routes)
