@@ -5,7 +5,8 @@
       "#/*": ["./modules/*"],
       "parts/*": ["./parts/*"],
       "pages/*": ["./pages/*"],
-      "config/*": ["./../config/*"]
+      "config/*": ["./../config/*"],
+      "services/*": ["./services/*"]
     },
     "target": "es5",
     "moduleResolution": "node",

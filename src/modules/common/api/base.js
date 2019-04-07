@@ -29,8 +29,7 @@ export class BaseApiClient extends GenericAPIClient {
       }
 
       return json.payload || json;
-    }
-    catch (error) {
+    } catch (error) {
       if (resp.status === 204) {
         return Promise.resolve();
       }
