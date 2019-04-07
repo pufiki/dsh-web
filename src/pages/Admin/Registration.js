@@ -56,9 +56,9 @@ class Registration extends React.Component {
 
   async registerHandler() {
     const payload = {
-      companyName: this.state.name,
+      name: this.state.name,
       email: this.state.email,
-      phone: this.state.phone
+      phoneNumber: this.state.phone
     };
 
     this.props.actions.customerRegister(payload, (data) => {
@@ -90,7 +90,7 @@ class Registration extends React.Component {
                        value={values.email} onChange={e => this.handleChange(e, 'email')}/>
             <br/>
             <TextField id="phone" label="Номер телефона" type="email" name="phone" style={styles.field}
-                       autoComplete="phone" margin="normal" variant="outlined" required placeholder="81236547809"
+                       autoComplete="phone" margin="normal" variant="outlined" required placeholder="+71236547809"
                        value={values.phone} onChange={e => this.handleChange(e, 'phone')}/>
             <br/>
             <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрировать</Button>
