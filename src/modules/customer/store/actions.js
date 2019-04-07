@@ -43,6 +43,7 @@ export const customerRegister = (payload, cb) => dispatch => {
         cb && cb(userInfo)
       } else {
         dispatch(requestError(reducerPreffix + types.ANY_FAILURE, new Error('')))
+        cb && cb(null)
         return;
       }
       dispatch({ type: reducerPreffix + types.ANY_SUCCESS })
@@ -50,6 +51,7 @@ export const customerRegister = (payload, cb) => dispatch => {
     .catch(err => {
       console.error(err);
       dispatch(requestError(reducerPreffix + types.ANY_FAILURE, err));
+      cb && cb(null)
     })
     .finally(() => {
       dispatch({ type: reducerPreffix + types.ANY_REQUEST_END })
