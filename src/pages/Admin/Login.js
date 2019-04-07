@@ -54,7 +54,7 @@ class AdminLogin extends React.Component{
       password: this.state.password
     };
 
-    this.props.actions.adminLogin(payload, () => this.props.history.push('/'))
+    this.props.actions.adminLogin(payload, () => this.props.history.push('/admin'))
 
 
   }

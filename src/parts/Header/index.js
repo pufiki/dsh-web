@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '@/redux/actions'
@@ -59,6 +60,13 @@ function Header(props) {
   }
 
   function handleClose() {
+    setAnchorEl(null);
+  }
+
+  function handleLogout(event) {
+    event.preventDefault();
+    props.actions.userLogout();
+    props.history.push('/');
     setAnchorEl(null);
   }
 
@@ -133,7 +141,7 @@ function Header(props) {
                   <ListItemText inset primary="Профиль" />
                 </MenuItem>
               </Link>
-              <Link to="/me/logout" component={RouterLink} style={styles.link}>
+              <Link to="/me/logout" component={RouterLink} style={styles.link} onClick={handleLogout}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
                     <ExitToApp />
@@ -158,7 +166,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(getUserInfo(Header))
+)(getUserInfo(Header)))

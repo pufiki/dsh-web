@@ -34,12 +34,13 @@ export const customerLogin = (payload) => dispatch => {
     })
 }
 
-export const customerRegister = (payload) => dispatch => {
+export const customerRegister = (payload, cb) => dispatch => {
   dispatch({ type: reducerPreffix + types.ANY_REQUEST_START })
   customerClient.register(payload)
     .then(userInfo => {
       if (userInfo) {
         // TODO
+        cb && cb(userInfo)
       } else {
         dispatch(requestError(reducerPreffix + types.ANY_FAILURE, new Error('')))
         return;

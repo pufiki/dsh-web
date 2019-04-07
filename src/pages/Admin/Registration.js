@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -36,16 +37,17 @@ const styles = {
   }
 };
 
+const defaultState = {
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: ''
+}
 class Registration extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    };
+    this.state = defaultState;
   }
 
   handleChange(event, name) {
@@ -59,12 +61,10 @@ class Registration extends React.Component {
       password: this.state.password
     };
 
-    try {
-      const result = await customerClient.register(payload);
-      console.log('registerHandler api result', result);
-    } catch (error) {
-      console.error(error)
-    }
+    this.props.actions.customerRegister(payload, () => {
+      this.props.actions.setToastData({ text: 'Зарегистрирован'})
+      this.setState(defaultState)
+    })
   }
 
   render() {
@@ -110,7 +110,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Registration)
+)(Registration))
