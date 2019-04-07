@@ -1,11 +1,10 @@
-import { withQuery } from 'kefetchup';
 import { BaseApiClient } from '#/common/api';
 
 const SUFFIX = 'contractor';
 
 class ContractorAPI extends BaseApiClient {
   constructor() {
-    super();
+    super('restapi/');
   }
 
   /**
@@ -13,8 +12,7 @@ class ContractorAPI extends BaseApiClient {
    * @param {{
       companyName: string,
       email: string,
-      password: string,
-      workSpecialization: number[]
+      password: string
     }} payload
    */
   async register(payload) {

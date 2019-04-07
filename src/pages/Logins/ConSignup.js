@@ -52,14 +52,19 @@ class ConSignup extends React.Component {
       email: '',
       password: '',
       passwordConfirm: '',
-      specs: []
+      specs: [],
+      errorText: ''
     };
   }
 
   handleChange(name) {
     return event => {
-      this.setState({ ...this.state, [name]: event.target.value })
+      this.setState({ ...this.state, errorText: '', [name]: event.target.value })
     }
+  }
+
+  setError(errorText) {
+    this.setState({ ...this.state, errorText })
   }
 
   registerHandler() {
@@ -67,8 +72,23 @@ class ConSignup extends React.Component {
       companyName: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      workSpecialization: this.state.specs.map(el => Number(el)),
     };
+
+    if (!payload.companyName) {
+      return this.setError('Укажите название компании.')
+    }
+
+    if (!payload.email) {
+      return this.setError('Укажите email.')
+    }
+
+    if (!payload.password) {
+      return this.setError('Укажите пароль.')
+    }
+
+    if (payload.password !== this.state.passwordConfirm) {
+      return this.setError('Пароли должны совпадать.')
+    }
 
     this.props.actions.contractorRegister(payload, () => {
       this.props.history.push('/')
@@ -101,8 +121,7 @@ class ConSignup extends React.Component {
               margin="normal" variant="outlined"
               value={values.passwordConfirm} onChange={this.handleChange('passwordConfirm')} />
             <br />
-
-            <Typography variant="subtitle1" style={styles.topMargin}>{this.props.contractor.error ? ('Ошибка ' + this.props.contractor.error.status) : ''}</Typography>
+            <Typography variant="subtitle1" color="error" style={styles.topMargin}>{values.errorText}</Typography>
 
             <br />
             <Button variant="contained" disabled={this.props.contractor.isLoading} color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Создать</Button>

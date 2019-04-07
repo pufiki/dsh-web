@@ -11,9 +11,9 @@ class CustomerAPI extends BaseApiClient {
   /**
    * Register Customer user. Throws with error status 409 if already exists.
    * @param {{
-      companyName: string,
+      name: string,
       email: string,
-      password: string
+      phone: string
     }} payload
    */
   async register(payload) {

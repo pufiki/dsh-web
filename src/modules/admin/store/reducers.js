@@ -1,12 +1,10 @@
 import initialState from './state'
 import { requestableReducerFactory } from '#/common/store/reducers'
-import errorMap from '../errorMap.json'
-import { errorMapperFactory } from '@/services/errorHandler'
+import { errorMapper } from '../'
 
 export const reducerPreffix = 'ADMIN_'
 
 const requestableReducer = requestableReducerFactory(reducerPreffix)
-const errorMapper = errorMapperFactory(errorMap)
 
 const admin = (state = initialState, action) => {
   const selectedReducer = requestableReducer[action.type]
