@@ -5,6 +5,6 @@ export const authToken = localStorage.getItem('authToken') || '';
 export const commonHeaders = {
   'Access-Content-Allow-Origin': '*',
   'Content-Type': 'application/json',
-  Authorization: authToken ? 'Bearer ' + authToken : '',
+  // Authorization: authToken ? 'Bearer ' + authToken : '',
   Accept: 'application/json',
 };
