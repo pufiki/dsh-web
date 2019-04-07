@@ -61,8 +61,13 @@ class Registration extends React.Component {
       password: this.state.password
     };
 
-    this.props.actions.customerRegister(payload, () => {
-      this.props.actions.setToastData({ text: 'Зарегистрирован'})
+    this.props.actions.customerRegister(payload, (data) => {
+      const toastMap = {
+        success: 'Зарегистрирован',
+        error: 'Ошибка'
+      }
+      const status = data ? 'success' : 'error'
+      this.props.actions.setToastData({ text: toastMap[status], status })
       this.setState(defaultState)
     })
   }
