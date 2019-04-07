@@ -26,11 +26,18 @@ class Toast extends React.Component {
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={this.props.open} autoHideDuration={5000} onClose={this.props.closeFunc}
         ContentProps={{ 'aria-describedby': 'message-id' }}
-        message={<Typography variant="h6" color="inherit" id="message-id">
-            {icon}
-            {this.props.title}<br/>
-            {this.props.message}
-          </Typography>}
+        message={
+          this.props.title ?
+            <Typography variant="h6" color="inherit" id="message-id">
+              <p>{icon}{this.props.title}</p>
+              {this.props.message}
+            </Typography>
+          :
+            <Typography variant="h6" color="inherit" id="message-id">
+              {icon}
+              {this.props.message}
+            </Typography>
+        }
         action={[
           <IconButton key="close" aria-label="Close" color="inherit" onClick={this.props.closeFunc}>
             <CloseIcon />
