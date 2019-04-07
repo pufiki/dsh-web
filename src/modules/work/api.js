@@ -1,7 +1,5 @@
 import { BaseApiClient } from '#/common/api';
 
-const SUFFIX = 'customer';
-
 class WorkAPI extends BaseApiClient {
   constructor() {
     super('restapi/');
