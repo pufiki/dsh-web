@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
 import Grid from '@material-ui/core/Grid'
 
 import Card from './Card'
@@ -56,4 +59,15 @@ class Customers extends React.Component {
   }
 }
 
-export default Customers
+const mapStateToProps = (state) => ({
+  customer: state.customer,
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Customers)
