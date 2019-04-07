@@ -6,8 +6,10 @@ export const errorMapperFactory = (moduleMap = {}) => {
     ...moduleMap
   }
 
-  return (error) => {
+  return (error, context = '') => {
     const errorStatus = error ? (String(error.status) || "-1") : "0"
-    return mergedMap[errorStatus] || ''
+    const result = mergedMap[errorStatus] || null
+    result && context && (result.context = context)
+    return result
   }
 }
