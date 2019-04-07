@@ -40,9 +40,9 @@ const styles = {
 const defaultState = {
   name: '',
   email: '',
-  password: '',
-  passwordConfirm: ''
+  phone: '',
 }
+
 class Registration extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +58,7 @@ class Registration extends React.Component {
     const payload = {
       companyName: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      phone: this.state.phone
     };
 
     this.props.actions.customerRegister(payload, (data) => {
@@ -86,19 +86,14 @@ class Registration extends React.Component {
                        variant="outlined" autoComplete="off" style={styles.field}/>
             <br/>
             <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
-                       autoComplete="email" margin="normal" variant="outlined" required
+                       autoComplete="email" margin="normal" variant="outlined" required placeholder="example@gmail.com"
                        value={values.email} onChange={e => this.handleChange(e, 'email')}/>
             <br/>
-            <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
-                       autoComplete="password" margin="normal" variant="outlined" required
-                       value={values.password} onChange={e => this.handleChange(e, 'password')}/>
+            <TextField id="phone" label="Номер телефона" type="email" name="phone" style={styles.field}
+                       autoComplete="phone" margin="normal" variant="outlined" required placeholder="81236547809"
+                       value={values.phone} onChange={e => this.handleChange(e, 'phone')}/>
             <br/>
-            <TextField id="passwordConfirm" label="Подтверждение пароля" type="password"
-                       name="passwordConfirm" style={styles.field} required
-                       margin="normal" variant="outlined"
-                       value={values.passwordConfirm} onChange={e => this.handleChange(e, 'passwordConfirm')}/>
-
-            <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрироваться</Button>
+            <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрировать</Button>
 
           </form>
         </Paper>

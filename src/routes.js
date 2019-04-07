@@ -26,6 +26,7 @@ import RequestCard from 'pages/Requests/Card'
 import Apply from 'pages/Requests/Apply'
 import Discuss from 'pages/Requests/Discuss'
 import Feedback from 'pages/Requests/Feedback'
+import Applies from 'pages/Requests/Applies'
 
 import Customers from 'pages/Customers'
 import Contractors from 'pages/Contractors'
@@ -106,6 +107,7 @@ class Routes extends React.Component {
             <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props} />} />
             <Route exact path="/request/:id/discuss" component={Discuss} />
             <Route exact path="/request/:id/feedback" component={Feedback} />
+            <Route exact path="/request/:id/applies" component={Applies} />
 
             <Route exact path="/customers" component={Customers} />
             <Route exact path="/contractors" component={Contractors} />
