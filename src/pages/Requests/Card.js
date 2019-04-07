@@ -93,7 +93,7 @@ class Card extends React.Component {
 
       {isFull &&
       <Link to={`/request/${req.id}/apply`} component={RouterLink} color="inherit" style={styles.apply}>
-        <Button variant="outlined" color="primary">Принять</Button>
+        <Button variant="outlined" color="primary">Откликнуться</Button>
       </Link>}
 
       {isFull &&

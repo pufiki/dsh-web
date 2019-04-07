@@ -44,7 +44,7 @@ class CusCard extends React.Component {
           </Typography>
         </CardContent>
         <CardMedia component="img" alt="Contemplative Reptile"
-                   height="140" image="/public/hack.png" title="Фотография подрядчика"/>
+                   height="140" image="https://s3.eu-north-1.amazonaws.com/serverlessgallery/pufiki/pufiki.png" title="Фотография подрядчика"/>
         <CardActions style={styles.flex}>
           <Link to={`/contractor/${cont.id}`} component={RouterLink} color="inherit" style={styles.link}>
             <Button size="small" color="primary" variant="outlined">

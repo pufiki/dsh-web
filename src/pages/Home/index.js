@@ -29,8 +29,8 @@ class Home extends React.Component {
     return (
       <main>
         <div style={styles.top}>
-          <img src="hack.png" alt="Digital Superhero logo" style={styles.hackImg}/>
-          <img src="pufiki.png" alt="Pufiki team logo" style={styles.pufikiImg}/>
+          <img src="https://s3.eu-north-1.amazonaws.com/serverlessgallery/pufiki/hack.png" alt="Digital Superhero logo" style={styles.hackImg}/>
+          <img src="https://s3.eu-north-1.amazonaws.com/serverlessgallery/pufiki/pufiki.png" alt="Pufiki team logo" style={styles.pufikiImg}/>
         </div>
         <div style={styles.middle}>
         </div>
