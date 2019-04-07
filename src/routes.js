@@ -20,6 +20,8 @@ import MeEdit from 'pages/Me/Edit'
 import NewRequest from 'pages/Requests/New'
 import RequestCard from 'pages/Requests/Card'
 import Apply from 'pages/Requests/Apply'
+import Discuss from 'pages/Requests/Discuss'
+import Feedback from 'pages/Requests/Feedback'
 
 import Customers from 'pages/Customers'
 import Contractors from 'pages/Contractors'
@@ -80,6 +82,12 @@ const Routes = () => {
           <Route exact path="/contractor/signup" component={ ConSignup }/>
 
           <Route exact path="/me/edit" component={ MeEdit }/>
+
+          <Route exact path="/me/requests" component={ Requests }/>
+          <Route exact path="/requests" component={ Requests }/>
+          <Route exact path="/contractor/:id/requests" component={ Requests }/>
+          <Route exact path="/customer/:id/requests" component={ Requests }/>
+
           <Route exact path="/me" render={(props) => <Profile user={user} {...props}/>}/>
           <Route exact path="/customer/:id" render={(props) => <Profile user={user} {...props}/>}/>
           <Route exact path="/contractor/:id" render={(props) => <Profile user={user} {...props}/>}/>
@@ -87,10 +95,11 @@ const Routes = () => {
           <Route exact path="/request/new" component={ NewRequest }/>
           <Route exact path="/request/:id/apply" component={ Apply }/>
           <Route exact path="/request/:id" render={(props) => <RequestCard request={request} full {...props}/>}/>
+          <Route exact path="/request/:id/discuss" component={ Discuss }/>
+          <Route exact path="/request/:id/feedback" component={ Feedback }/>
 
           <Route exact path="/customers" component={ Customers }/>
           <Route exact path="/contractors" component={ Contractors }/>
-          <Route exact path="/requests" component={ Requests }/>
 
           <Route component={ Error404 }/>
         </Switch>
