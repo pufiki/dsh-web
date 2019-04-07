@@ -6,7 +6,6 @@ import { reducerPreffix } from './reducers'
 import { errorMapperFactory } from '@/services/errorHandler'
 import { ToastActionTypes } from 'parts/Toasts'
 import { storageUserInfo } from './'
-import * as userActions from '#/user/store/actions'
 
 const defaultErrorMapper = errorMapperFactory()
 
@@ -16,7 +15,7 @@ const types = {
 }
 
 export const updateInfo = (userInfo) => {
-  localStorage.setItem('userInfo', JSON.stringify(userInfo) || null);
+  localStorage.setItem('userInfo', userInfo ? JSON.stringify(userInfo) : null);
 
   return {
     type: reducerPreffix + types.INFO_RECIEVED,
@@ -28,9 +27,14 @@ export const updateUserInfo = (payload) => dispatch => {
   dispatch(updateInfo(payload));
 }
 
+export const userLogout = (cb) => dispatch => {
+  dispatch(updateInfo(null))
+  cb && cb()
+}
+
 export const userMe = (cb) => dispatch => {
   // Make it blyat
-  dispatch(userActions.updateInfo(storageUserInfo))
+  dispatch(updateInfo(storageUserInfo))
 
   // const context = 'Получение данных пользователя'
   // dispatch({ type: reducerPreffix + types.ANY_REQUEST_START })
