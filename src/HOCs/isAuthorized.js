@@ -35,7 +35,7 @@ export default function isAuthorizedHOC (ChildComponent) {
       if (this.props.user.isLoading) {
         return loading
       } else {
-        return this.props.user.info.id ? childs : noAccess
+        return (this.props.user.info && this.props.user.info.id) ? childs : noAccess
       }
     }
   }
