@@ -113,7 +113,7 @@ class Routes extends React.Component {
             <Route component={Error404} />
           </Switch>
         </div>
-        <Toast message={this.props.toast.data ? this.props.toast.data.text : ''} status={this.props.toast.data ? this.props.toast.data.status : 'info'} closeFunc={() => this.props.actions.closeToast()} open={!!this.props.toast.show} />
+        <Toast title={this.props.toast.data ? this.props.toast.data.context : undefined} message={this.props.toast.data ? this.props.toast.data.text : ''} status={this.props.toast.data ? this.props.toast.data.status : 'info'} closeFunc={() => this.props.actions.closeToast()} open={!!this.props.toast.show} />
       </BrowserRouter>
     )
   }
