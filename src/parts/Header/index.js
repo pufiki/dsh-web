@@ -17,6 +17,8 @@ import Fingerprint from '@material-ui/icons/Fingerprint'
 import Search from '@material-ui/icons/Search'
 import Assignment from '@material-ui/icons/Assignment'
 import Build from '@material-ui/icons/Build'
+import ExitToApp from '@material-ui/icons/ExitToApp'
+import PermIdentity from '@material-ui/icons/PermIdentity'
 
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@material-ui/core/Link'
@@ -95,7 +97,7 @@ function Header(props) {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} onClose={handleClose}>
-            {!props.user.info.username ?
+            {!props.user.info || !props.user.info.username ?
             <MenuList style={styles.menu}>
               <Link to="/customer/login" component={RouterLink} style={styles.link}>
                 <MenuItem onClick={handleClose}>
@@ -126,7 +128,7 @@ function Header(props) {
               <Link to="/me" component={RouterLink} style={styles.link}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
-                    <Fingerprint />
+                    <PermIdentity />
                   </ListItemIcon>
                   <ListItemText inset primary="Профиль" />
                 </MenuItem>
@@ -134,7 +136,7 @@ function Header(props) {
               <Link to="/me/logout" component={RouterLink} style={styles.link}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
-                    <Fingerprint />
+                    <ExitToApp />
                   </ListItemIcon>
                   <ListItemText inset primary="Убежать" />
                 </MenuItem>
