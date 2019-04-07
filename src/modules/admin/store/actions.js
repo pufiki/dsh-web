@@ -16,12 +16,13 @@ export const doCloseToast = () => dispatch => {
   dispatch({ type: reducerPreffix + types.CLOSE_TOAST })
 }
 
-export const adminLogin = (payload) => dispatch => {
+export const adminLogin = (payload, cb) => dispatch => {
   dispatch({ type: reducerPreffix + types.ANY_REQUEST_START })
   adminClient.login(payload)
     .then(userInfo => {
       if (userInfo) {
         dispatch(userActions.updateInfo(userInfo))
+        cb && cb()
       } else {
         dispatch(requestError(reducerPreffix + types.ANY_FAILURE, new Error('')))
         return;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as Actions from '@/redux/actions'
 import Paper from '@material-ui/core/Paper'
@@ -53,7 +54,9 @@ class AdminLogin extends React.Component{
       password: this.state.password
     };
 
-    this.props.actions.adminLogin(payload)
+    this.props.actions.adminLogin(payload, () => this.props.history.push('/'))
+
+
   }
 
   render() {
@@ -93,7 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch)
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(AdminLogin)
+)(AdminLogin))
