@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -44,7 +47,7 @@ const styles = {
   }
 };
 
-function Header() {
+function Header(props) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -92,6 +95,7 @@ function Header() {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} onClose={handleClose}>
+            {!props.user.info.username ?
             <MenuList style={styles.menu}>
               <Link to="/customer/login" component={RouterLink} style={styles.link}>
                 <MenuItem onClick={handleClose}>
@@ -117,7 +121,26 @@ function Header() {
                   <ListItemText inset primary="Сетевая компания" />
                 </MenuItem>
               </Link>
+            </MenuList> :
+            <MenuList style={styles.menu}>
+              <Link to="/me" component={RouterLink} style={styles.link}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Fingerprint />
+                  </ListItemIcon>
+                  <ListItemText inset primary="Профиль" />
+                </MenuItem>
+              </Link>
+              <Link to="/me/logout" component={RouterLink} style={styles.link}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Fingerprint />
+                  </ListItemIcon>
+                  <ListItemText inset primary="Убежать" />
+                </MenuItem>
+              </Link>
             </MenuList>
+            }
           </Menu>
 
         </div>
@@ -126,4 +149,14 @@ function Header() {
   )
 }
 
-export default getUserInfo(Header)
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(getUserInfo(Header))
