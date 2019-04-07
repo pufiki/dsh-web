@@ -63,7 +63,7 @@ class Registration extends React.Component {
     const payload = {
       name: this.state.name,
       email: this.state.email,
-      phoneNumber: this.state.phone
+      phone: this.state.phone
     };
 
     if (!payload.name) {
