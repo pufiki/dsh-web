@@ -1,5 +1,9 @@
 import initialState from './state'
-import { requestableReducer } from '#/common/store/reducers'
+import { requestableReducerFactory } from '#/common/store/reducers'
+
+export const reducerPreffix = 'USER_'
+
+const requestableReducer = requestableReducerFactory(reducerPreffix)
 
 const user = (state = initialState, action) => {
   const reducerList = {
