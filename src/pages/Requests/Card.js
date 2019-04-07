@@ -119,6 +119,10 @@ class Card extends React.Component {
 
       {isFull &&
       <div style={styles.actives}>
+        {active === 1 &&
+        <Link to="/request/0/applies" component={RouterLink} variant="h6" style={styles.decor}>
+          <Button variant="outlined" color="primary">Список откликов</Button>
+        </Link>}
         {active === 2 &&
         <Link to="/request/0/discuss" component={RouterLink} variant="h6" style={styles.decor}>
           <Button variant="outlined" color="primary">Общение</Button>

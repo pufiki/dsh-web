@@ -14,7 +14,7 @@ import Link from '@material-ui/core/Link'
 const styles = {
   mainDiv: {
     width: '80%',
-    margin: '32px auto'
+    margin: '7% auto'
   }
 };
 
@@ -33,7 +33,7 @@ const rows = [
   }
 ];
 
-class Acceptance extends React.Component {
+class Applies extends React.Component {
 
   render() {
     return(
@@ -69,4 +69,4 @@ class Acceptance extends React.Component {
   }
 }
 
-export default Acceptance
+export default Applies
