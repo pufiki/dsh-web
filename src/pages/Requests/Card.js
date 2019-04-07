@@ -69,13 +69,13 @@ class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: 0
+      active: 1
     }
   }
 
   nextStep() {
     if(this.state.active === 4) {
-      this.setState({active: 0})
+      this.setState({active: 1})
     } else {
       this.setState({active: this.state.active + 1})
     }
@@ -99,7 +99,7 @@ class Card extends React.Component {
       {isFull &&
       <div style={styles.stepperDiv}>
         <Stepper activeStep={active}>
-          <Step key={0}>
+          <Step key={0} completed>
             <StepLabel>Создать заявку</StepLabel>
           </Step>
           <Step key={1}>
