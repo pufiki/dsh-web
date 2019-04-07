@@ -6,6 +6,7 @@ import { reducerPreffix } from './reducers'
 import { errorMapperFactory } from '@/services/errorHandler'
 import { ToastActionTypes } from 'parts/Toasts'
 import { storageUserInfo } from './'
+import * as userActions from '#/user/store/actions'
 
 const defaultErrorMapper = errorMapperFactory()
 
