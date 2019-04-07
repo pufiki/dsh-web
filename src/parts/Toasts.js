@@ -15,12 +15,12 @@ class Toast extends React.Component {
   }
 
   render() {
-    let icon;
-    if(this.props.status === 'error'){
-      icon = <ErrorIcon/>
-    } else if(this.props.status === 'success'){
-      icon = <CheckCircleIcon/>
-    } else icon = <InfoIcon/>
+    const iconsMap = {
+      error: <ErrorIcon />,
+      success: <CheckCircleIcon />
+    }
+
+    let icon = iconsMap[this.props.status] || <InfoIcon />;
 
     return(
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -28,6 +28,7 @@ class Toast extends React.Component {
         ContentProps={{ 'aria-describedby': 'message-id' }}
         message={<Typography variant="h6" color="inherit" id="message-id">
             {icon}
+            {this.props.title}<br/>
             {this.props.message}
           </Typography>}
         action={[
@@ -43,6 +44,7 @@ class Toast extends React.Component {
 Toast.propTypes = {
   open: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
+  title: PropTypes.string,
   status: PropTypes.string.isRequired,
   closeFunc: PropTypes.func
 };
@@ -51,3 +53,40 @@ Toast.defaultProps = {
 };
 
 export default Toast
+
+export const ToastState = {
+  data: null,
+  show: false
+}
+
+export const ToastActionTypes = {
+  SET_DATA: 'SET_DATA',
+  CLOSE_TOAST: 'CLOSE_TOAST',
+}
+
+export const ToastReducer = (state = ToastState, action) => {
+  switch (action.type) {
+    case ToastActionTypes.SET_DATA:
+      return {
+        ...state,
+        data: action.data,
+        show: true
+      };
+    case ToastActionTypes.CLOSE_TOAST:
+      return {
+        ...state,
+        show: false
+      };
+    default:
+      return state
+  }
+}
+
+export const ToastActions = {
+  setToastData: (data) => (dispatch) => {
+    dispatch({ type: ToastActionTypes.SET_DATA, data })
+  },
+  closeToast: () => (dispatch) => {
+    dispatch({ type: ToastActionTypes.CLOSE_TOAST })
+  }
+}
