@@ -3,10 +3,8 @@ import * as requestableTypes from '#/common/store/action-types'
 import { requestError } from '#/common/store/actions'
 import * as userActions from '#/user/store/actions'
 import { reducerPreffix } from './reducers'
-import { errorMapperFactory } from '@/services/errorHandler'
 import { ToastActionTypes } from 'parts/Toasts'
-
-const defaultErrorMapper = errorMapperFactory()
+import { errorMapper } from '../'
 
 const types = {
   ...requestableTypes
@@ -31,7 +29,7 @@ export const adminLogin = (payload, cb) => dispatch => {
     })
     .catch(err => {
       dispatch(requestError(reducerPreffix + types.ANY_FAILURE, err));
-      dispatch({ type: ToastActionTypes.SET_DATA, data: defaultErrorMapper(err) })
+      dispatch({ type: ToastActionTypes.SET_DATA, data: errorMapper(err) })
     })
     .finally(() => {
       dispatch({ type: reducerPreffix + types.ANY_REQUEST_END })

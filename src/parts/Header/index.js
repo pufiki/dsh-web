@@ -105,7 +105,7 @@ function Header(props) {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open} onClose={handleClose}>
-            {!props.user.info || !props.user.info.username ?
+            {!props.user.info || !props.user.info.id ?
             <MenuList style={styles.menu}>
               <Link to="/customer/login" component={RouterLink} style={styles.link}>
                 <MenuItem onClick={handleClose}>

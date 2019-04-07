@@ -1,4 +1,10 @@
 import React from 'react'
+
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '@/redux/actions'
+
+import { withRouter } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -37,49 +43,93 @@ const styles = {
   }
 };
 
-function ConLogin() {
+class ConLogin extends React.Component {
+  constructor(props) {
+    super(props)
 
-  const [values, setValues] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  });
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
+    this.state = {
+      email: '',
+      password: '',
+      errorText: ''
+    }
+  }
 
-  return(
-    <div style={styles.centerDiv}>
-      <Typography variant="h4" style={styles.title}>Подрядчик</Typography>
-      <Paper elevation={4} style={styles.paper}>
-        <Typography variant="h6" style={styles.paperTitle}>Вход</Typography>
-        <form align="center">
-          <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
-                     autoComplete="email" margin="normal" variant="outlined" required
-                     value={values.email} onChange={handleChange('email')}/>
-          <br/>
-          <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
-                     autoComplete="password" margin="normal" variant="outlined" required
-                     value={values.password} onChange={handleChange('password')}/>
-          <br/>
+  handleChange(name) {
+    return event => {
+      this.setState({ ...this.state, errorText: '', [name]: event.target.value })
+    }
+  }
 
-          <Button variant="contained" color="primary" style={styles.button}>Войти</Button>
+  setError(errorText) {
+    this.setState({ ...this.state, errorText })
+  }
 
-          <Typography variant="subtitle1" style={styles.topMargin}>Ещё нет аккаунта?</Typography>
-          <Link to="/contractor/signup" component={RouterLink} variant="subtitle1">
-            Зарегистрироваться
+  loginHandler() {
+    const payload = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    if (!payload.email) {
+      return this.setError('Укажите email.')
+    }
+
+    if (!payload.password) {
+      return this.setError('Укажите пароль.')
+    }
+
+    this.props.actions.contractorLogin(payload, () => {
+      this.props.history.push('/')
+    })
+  }
+
+  render() {
+    const values = this.state;
+
+    return (
+      <div style={styles.centerDiv}>
+        <Typography variant="h4" style={styles.title}>Подрядчик</Typography>
+        <Paper elevation={4} style={styles.paper}>
+          <Typography variant="h6" style={styles.paperTitle}>Вход</Typography>
+          <form align="center">
+            <TextField id="email" label="Эл. почта" type="email" name="email" style={styles.field}
+              autoComplete="email" margin="normal" variant="outlined" required
+              value={values.email} onChange={this.handleChange('email')} />
+            <br />
+            <TextField id="password" label="Пароль" type="password" name="password" style={styles.field}
+              autoComplete="password" margin="normal" variant="outlined" required
+              value={values.password} onChange={this.handleChange('password')} />
+            <br />
+            <Typography variant="subtitle1" color="error" style={styles.topMargin}>{values.errorText}</Typography>
+
+            <Button variant="contained" color="primary" disabled={this.props.contractor.isLoading} style={styles.button} onClick={e => this.loginHandler(values)}>Войти</Button>
+
+            <Typography variant="subtitle1" style={styles.topMargin}>Ещё нет аккаунта?</Typography>
+            <Link to="/contractor/signup" component={RouterLink} variant="subtitle1">
+              Зарегистрироваться
           </Link>
 
-        </form>
-      </Paper>
+          </form>
+        </Paper>
 
-      <Link to="/customer/login" component={RouterLink} variant="h6" style={styles.changeRole}>
-        Я заказчик
+        <Link to="/customer/login" component={RouterLink} variant="h6" style={styles.changeRole}>
+          Я заказчик
       </Link>
 
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default ConLogin
+const mapStateToProps = (state) => ({
+  contractor: state.contractor,
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ConLogin))

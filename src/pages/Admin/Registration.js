@@ -41,6 +41,7 @@ const defaultState = {
   name: '',
   email: '',
   phone: '',
+  errorText: ''
 }
 
 class Registration extends React.Component {
@@ -48,6 +49,10 @@ class Registration extends React.Component {
     super(props);
 
     this.state = defaultState;
+  }
+
+  setError(errorText) {
+    this.setState({ ...this.state, errorText })
   }
 
   handleChange(event, name) {
@@ -60,6 +65,18 @@ class Registration extends React.Component {
       email: this.state.email,
       phoneNumber: this.state.phone
     };
+
+    if (!payload.name) {
+      return this.setError('Укажите имя.')
+    }
+
+    if (!payload.email) {
+      return this.setError('Укажите email.')
+    }
+
+    if (!payload.phone) {
+      return this.setError('Укажите телефон.')
+    }
 
     this.props.actions.customerRegister(payload, (data) => {
       const toastMap = {
@@ -93,7 +110,9 @@ class Registration extends React.Component {
                        autoComplete="phone" margin="normal" variant="outlined" required placeholder="+71236547809"
                        value={values.phone} onChange={e => this.handleChange(e, 'phone')}/>
             <br/>
-            <Button variant="contained" color="primary" style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрировать</Button>
+            <Typography variant="subtitle1" color="error" style={styles.topMargin}>{values.errorText}</Typography>
+
+            <Button variant="contained" color="primary" disabled={this.props.customer.isLoading} style={styles.button} onClick={e => this.registerHandler(values)}>Зарегистрировать</Button>
 
           </form>
         </Paper>
@@ -104,6 +123,7 @@ class Registration extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  customer: state.customer,
   user: state.user
 });
 const mapDispatchToProps = (dispatch) => ({
