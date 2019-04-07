@@ -34,6 +34,8 @@ import Requests from 'pages/Requests'
 
 const styles = {
   margin: {
+    position: 'relative',
+    zIndex: 1,
     marginTop: 64
   }
 };

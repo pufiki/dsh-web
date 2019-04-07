@@ -31,6 +31,7 @@ const styles = {
     marginLeft: 22
   },
   root: {
+    zIndex: 3,
     flexGrow: 1
   },
   grow: {
