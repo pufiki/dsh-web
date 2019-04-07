@@ -95,7 +95,7 @@ class Me extends React.Component {
               <Button variant="outlined" color="primary" style={styles.requests}>Заявки</Button>
             </Link>
             <Link to="/me/edit" component={RouterLink}>
-              <Button variant="outlined" color="primary" style={styles.requests}>Изменить</Button>
+              <Button variant="outlined" color="primary" style={styles.requests}>Редактировать</Button>
             </Link>
           </div>
 

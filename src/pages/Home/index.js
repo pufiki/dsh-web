@@ -127,6 +127,11 @@ class Home extends React.Component {
                         Страница заказчика
                       </Button>
                     </Link>
+                    <Link to="/me/edit" component={RouterLink} color="inherit" style={styles.decor}>
+                      <Button color="primary" variant="outlined">
+                        Редактирование
+                      </Button>
+                    </Link>
                     <Link to="/customers" component={RouterLink} color="inherit" style={styles.decor}>
                       <Button color="primary" variant="outlined">
                         Заказчики
