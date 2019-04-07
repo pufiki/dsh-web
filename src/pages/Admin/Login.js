@@ -6,7 +6,6 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Toast from 'parts/Toasts'
 
 const styles = {
   centerDiv: {
@@ -79,7 +78,6 @@ class AdminLogin extends React.Component{
 
             {/*<p>{JSON.stringify(this.props.user)}</p>*/}
             {/*<p>{JSON.stringify(this.props.admin)}</p>*/}
-            <Toast message="No Text" status="success" open={true}/>
           </form>
         </Paper>
       </div>
